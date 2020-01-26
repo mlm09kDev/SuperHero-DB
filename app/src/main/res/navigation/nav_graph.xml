@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/todayWeatherFragment">
+
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.mlm09kdev.quickweather.UI.Weather.Details.DetailsFragment"
+        android:label="details_fragment"
+        tools:layout="@layout/details_fragment" />
+    <fragment
+        android:id="@+id/futureWeatherFragment"
+        android:name="com.mlm09kdev.quickweather.UI.Weather.Future.FutureWeatherFragment"
+        android:label="future_weather_fragment"
+        tools:layout="@layout/future_weather_fragment" />
+    <fragment
+        android:id="@+id/todayWeatherFragment"
+        android:name="com.mlm09kdev.quickweather.UI.Weather.Today.TodayWeatherFragment"
+        android:label="today_weather_fragment"
+        tools:layout="@layout/today_weather_fragment" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.mlm09kdev.quickweather.UI.Settings.SettingsFragment"
+        android:label="SettingsFragment" />
+</navigation>
