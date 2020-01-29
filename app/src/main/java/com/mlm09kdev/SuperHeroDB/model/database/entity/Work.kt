@@ -1,4 +1,4 @@
-package com.mlm09kdev.SuperHeroDB.model.response
+package com.mlm09kdev.SuperHeroDB.model.database.entity
 
 
 data class Work(

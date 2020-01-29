@@ -35,11 +35,11 @@ class TodayWeatherFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(TodayWeatherViewModel::class.java)
         // TODO: Use the ViewModel
 
-    /*    val apiService = SuperHeroAPIService()
+       val apiService = SuperHeroAPIService()
         GlobalScope.launch(Dispatchers.Main) {
             val superHeroResponse = apiService.getSuperHero(76)
             textview.text = superHeroResponse.toString()
-        }*/
+        }
     }
 
 }

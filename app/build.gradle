@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -46,6 +48,13 @@ dependencies {
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    // Room
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifeCycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifeCycle_version"
+    kapt "androidx.room:room-compiler:$room_version"
 
     //Testing
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
