@@ -1,4 +1,4 @@
-package com.mlm09kdev.quickweather.UI
+package com.mlm09kdev.SuperHeroDB.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,7 +6,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
-import com.mlm09kdev.quickweather.R
+import com.mlm09kdev.SuperHeroDB.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

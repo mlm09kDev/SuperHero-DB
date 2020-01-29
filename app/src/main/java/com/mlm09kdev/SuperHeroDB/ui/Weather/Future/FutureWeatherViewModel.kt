@@ -1,4 +1,4 @@
-package com.mlm09kdev.quickweather.UI.Weather.Future
+package com.mlm09kdev.SuperHeroDB.ui.Weather.Future
 
 import androidx.lifecycle.ViewModel
 

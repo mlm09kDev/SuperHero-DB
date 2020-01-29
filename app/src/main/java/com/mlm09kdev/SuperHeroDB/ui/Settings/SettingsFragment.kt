@@ -1,4 +1,4 @@
-package com.mlm09kdev.quickweather.UI.Settings
+package com.mlm09kdev.SuperHeroDB.ui.Settings
 
 import androidx.fragment.app.Fragment
 

@@ -1,4 +1,4 @@
-package com.mlm09kdev.quickweather.UI.Weather.Future
+package com.mlm09kdev.SuperHeroDB.ui.Weather.Today
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -7,27 +7,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-import com.mlm09kdev.quickweather.R
+import com.mlm09kdev.SuperHeroDB.R
 
-class FutureWeatherFragment : Fragment() {
+class TodayWeatherFragment : Fragment() {
 
     companion object {
         fun newInstance() =
-            FutureWeatherFragment()
+            TodayWeatherFragment()
     }
 
-    private lateinit var viewModel: FutureWeatherViewModel
+    private lateinit var viewModel: TodayWeatherViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.future_weather_fragment, container, false)
+        return inflater.inflate(R.layout.today_weather_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(FutureWeatherViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(TodayWeatherViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

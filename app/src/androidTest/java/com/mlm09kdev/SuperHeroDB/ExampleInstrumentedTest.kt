@@ -1,4 +1,4 @@
-package com.mlm09kdev.quickweather
+package com.mlm09kdev.SuperHeroDB
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

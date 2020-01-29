@@ -8,7 +8,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "com.mlm09kdev.quickweather"
+        applicationId "com.mlm09kdev.SuperHeroDB"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
@@ -36,6 +36,9 @@ dependencies {
 
     //Material
     implementation "com.google.android.material:material:$material_version"
+
+    //Gson
+    implementation "com.google.code.gson:gson:$gson_version"
 
     //Testing
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'

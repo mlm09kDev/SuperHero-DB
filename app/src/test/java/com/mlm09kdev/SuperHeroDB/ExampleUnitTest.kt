@@ -1,4 +1,4 @@
-package com.mlm09kdev.quickweather
+package com.mlm09kdev.SuperHeroDB
 
 import org.junit.Test
 
