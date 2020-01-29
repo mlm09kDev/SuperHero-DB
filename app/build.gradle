@@ -22,7 +22,7 @@ android {
         }
     }
     buildTypes.each {
-        it.buildConfigField 'String', 'API_TOKEN', api_token
+       // it.buildConfigField 'String', 'API_TOKEN', api_token
     }
 }
 
