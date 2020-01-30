@@ -6,9 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 
 import com.mlm09kdev.SuperHeroDB.R
-import com.mlm09kdev.SuperHeroDB.model.SuperHeroAPIService
+import com.mlm09kdev.SuperHeroDB.model.network.ConnectionInterceptorImpl
+import com.mlm09kdev.SuperHeroDB.model.network.NetworkDataSourceImpl
+import com.mlm09kdev.SuperHeroDB.model.network.SuperHeroAPIService
 import kotlinx.android.synthetic.main.today_weather_fragment.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -35,10 +38,23 @@ class TodayWeatherFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(TodayWeatherViewModel::class.java)
         // TODO: Use the ViewModel
 
-       val apiService = SuperHeroAPIService()
+       val apiService =
+           SuperHeroAPIService(
+               ConnectionInterceptorImpl(
+                   this.context!!
+               )
+           )
+        val networkDataSource =
+            NetworkDataSourceImpl(
+                apiService
+            )
+
+        networkDataSource.downloadedSuperHero.observe(this, Observer {
+            textview.text = it.toString() })
+
         GlobalScope.launch(Dispatchers.Main) {
-            val superHeroResponse = apiService.getSuperHero(76)
-            textview.text = superHeroResponse.toString()
+           networkDataSource.fetchSuperHero("76")
+
         }
     }
 

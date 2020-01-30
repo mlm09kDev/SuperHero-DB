@@ -1,9 +1,8 @@
-package com.mlm09kdev.SuperHeroDB.model.response
+package com.mlm09kdev.SuperHeroDB.model.network.response
 
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.google.gson.annotations.SerializedName
 import com.mlm09kdev.SuperHeroDB.model.database.entity.*
 
 @Entity(tableName = "superHero")

@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.mlm09kdev.SuperHeroDB.model.response.SuperHeroResponse
+import com.mlm09kdev.SuperHeroDB.model.network.response.SuperHeroResponse
 
 @Database(
     entities = [SuperHeroResponse::class], version = 1

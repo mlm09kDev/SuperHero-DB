@@ -5,16 +5,16 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.mlm09kdev.SuperHeroDB.model.response.SuperHeroResponse
+import com.mlm09kdev.SuperHeroDB.model.network.response.SuperHeroResponse
 
 @Dao
 interface SuperHeroDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun updateAndInser(superHeroResponse: SuperHeroResponse)
+    fun updateAndInsert(superHeroResponse: SuperHeroResponse)
 
     @Query("select * from superHero")
-    fun getAllSuperHero():List<LiveData<SuperHeroResponse>>
+    fun getAllSuperHero():LiveData<List<SuperHeroResponse>>
 
     //todo find way to change id to int instead of string
     @Query("select * from superHero where id = :id")
