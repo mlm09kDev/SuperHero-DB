@@ -1,14 +1,30 @@
 package com.mlm09kdev.SuperHeroDB.model.response
 
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
+import com.mlm09kdev.SuperHeroDB.model.database.entity.*
 
+@Entity(tableName = "superHero")
 data class SuperHeroResponse(
-    val appearance: Appearance,
-    val biography: Biography,
-    val connections: Connections,
-    val id: String,
-    val image: Image,
-    val name: String,
-    val powerstats: Powerstats,
     val response: String,
-    val work: Work
-)
+    @PrimaryKey(autoGenerate = false)
+    val id: String,
+    val name: String,
+    @Embedded(prefix ="powerstats_" )
+    val powerstats: Powerstats,
+    @Embedded(prefix ="biography_" )
+    val biography: Biography,
+    @Embedded(prefix ="appearance_" )
+    val appearance: Appearance,
+    @Embedded(prefix ="work_" )
+    val work: Work,
+    @Embedded(prefix ="connections_" )
+    val connections: Connections,
+    @Embedded(prefix ="image_" )
+    val image: Image
+){
+   // @PrimaryKey(autoGenerate = false)
+   // var id:Int  = Integer.parseInt(id_string)
+}

@@ -1,10 +1,14 @@
-package com.mlm09kdev.SuperHeroDB.model.response
+package com.mlm09kdev.SuperHeroDB.model.database.entity
 
 
+import androidx.room.Embedded
+import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "biography")
 data class Biography(
-    val aliases: List<String>,
+   // @Embedded(prefix ="aliases_" )
+   // val aliases: List<String>,
     val alignment: String,
     @SerializedName("alter-egos")
     val alterEgos: String,
