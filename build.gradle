@@ -13,7 +13,7 @@ buildscript {
         lifeCycle_version = "2.2.0"
         threetenabp_version = "1.1.0"
         kodein_version = "6.5.0"
-
+        glide_version = "4.9.0"
 
     }
     repositories {
