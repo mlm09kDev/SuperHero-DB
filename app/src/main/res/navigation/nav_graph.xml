@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.mlm09kdev.SuperHeroDB.ui.Weather.Details.DetailsFragment"
+        android:name="com.mlm09kdev.SuperHeroDB.ui.superHero.Details.DetailsFragment"
         android:label="details_fragment"
         tools:layout="@layout/details_fragment" />
     <fragment
         android:id="@+id/futureWeatherFragment"
-        android:name="com.mlm09kdev.SuperHeroDB.ui.Weather.Future.FutureWeatherFragment"
+        android:name="com.mlm09kdev.SuperHeroDB.ui.superHero.superHeroList.SuperHeroListFragment"
         android:label="future_weather_fragment"
         tools:layout="@layout/future_weather_fragment" />
     <fragment
         android:id="@+id/todayWeatherFragment"
-        android:name="com.mlm09kdev.SuperHeroDB.ui.Weather.Today.TodayWeatherFragment"
+        android:name="com.mlm09kdev.SuperHeroDB.ui.superHero.superHero.SuperHeroFragment"
         android:label="today_weather_fragment"
-        tools:layout="@layout/today_weather_fragment" />
+        tools:layout="@layout/superhero_layout" />
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.mlm09kdev.SuperHeroDB.ui.Settings.SettingsFragment"

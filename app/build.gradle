@@ -26,6 +26,15 @@ android {
     buildTypes.each {
         it.buildConfigField 'String', 'API_TOKEN', api_token
     }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
 }
 
 dependencies {

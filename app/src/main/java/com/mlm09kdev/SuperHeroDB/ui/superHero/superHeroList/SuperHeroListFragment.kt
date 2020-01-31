@@ -1,4 +1,4 @@
-package com.mlm09kdev.SuperHeroDB.ui.Weather.Future
+package com.mlm09kdev.SuperHeroDB.ui.superHero.superHeroList
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -9,14 +9,14 @@ import android.view.ViewGroup
 
 import com.mlm09kdev.SuperHeroDB.R
 
-class FutureWeatherFragment : Fragment() {
+class SuperHeroListFragment : Fragment() {
 
     companion object {
         fun newInstance() =
-            FutureWeatherFragment()
+            SuperHeroListFragment()
     }
 
-    private lateinit var viewModel: FutureWeatherViewModel
+    private lateinit var viewModel: SuperHeroListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +27,7 @@ class FutureWeatherFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(FutureWeatherViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(SuperHeroListViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

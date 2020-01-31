@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.mlm09kdev.SuperHeroDB.model.network.response.SuperHeroResponse
 
 @Database(
-    entities = [SuperHeroResponse::class], version = 1
+    entities = [SuperHeroResponse::class], version = 1, exportSchema = false
 )
 abstract class SuperHeroDatabase: RoomDatabase() {
     abstract fun superHeroDao(): SuperHeroDao
