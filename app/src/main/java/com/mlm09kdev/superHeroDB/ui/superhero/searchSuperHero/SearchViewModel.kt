@@ -7,6 +7,6 @@ import com.mlm09kdev.superHeroDB.utils.lazyDeferred
 class SearchViewModel(private val superHeroRepository: SuperHeroRepository) : ViewModel() {
 
     val superHero by lazyDeferred {
-        superHeroRepository.getSuperHero("76") }
+        superHeroRepository.getSuperHero("Batman") }
 
 }

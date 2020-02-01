@@ -2,7 +2,7 @@ package com.mlm09kdev.superHeroDB.model.network
 
 import com.google.gson.GsonBuilder
 import com.mlm09kdev.superHeroDB.BuildConfig
-import com.mlm09kdev.superHeroDB.model.network.response.SuperHeroResponse
+import com.mlm09kdev.superHeroDB.model.network.response.SearchResponse
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -12,15 +12,16 @@ import retrofit2.http.Path
 /**
  * Created by Manuel Montes de Oca on 1/28/2020.
  */
-const val BASE_URL ="https://www.superheroapi.com/api.php/"+ BuildConfig.API_TOKEN + "/"
+const val BASE_URL ="https://www.superheroapi.com/api.php/"+ BuildConfig.API_TOKEN+"/"
 
 interface SuperHeroAPIService {
 
-    @GET("{id}")
+   /* @GET("{id}")
     suspend fun getSuperHeroById(@Path(value = "id") id: String): SuperHeroResponse
+*/
 
     @GET("search/{name}")
-    suspend fun getSuperHeroByName(@Path(value = "name") name: String): SuperHeroResponse
+    suspend fun getSuperHeroList(@Path(value = "name") name: String): SearchResponse
 
     companion object{
         operator fun invoke(connectionInterceptor: ConnectionInterceptor): SuperHeroAPIService {
@@ -33,4 +34,5 @@ interface SuperHeroAPIService {
                 .build().create(SuperHeroAPIService::class.java)
         }
     }
+
 }

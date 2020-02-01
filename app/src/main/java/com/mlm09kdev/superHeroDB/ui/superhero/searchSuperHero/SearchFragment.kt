@@ -46,11 +46,15 @@ class SearchFragment : ScopedFragment(), KodeinAware {
     private fun bindUI() = launch {
         val superHero = viewModel.superHero.await()
         superHero.observe(this@SearchFragment, Observer {
-            if (it == null) return@Observer
-                group_loading.visibility = View.GONE
-            updateSuperHeroInfo(it.name,it.biography.publisher)
+            if (it.isEmpty()) 
+                return@Observer
+            group_loading.visibility = View.GONE
 
-            GlideApp.with(this@SearchFragment).load(it.image.url).into(imageView_superHero_image)
+            updateSuperHeroInfo(it[0].name,it[0].biography.publisher)
+           // updateSuperHeroInfo(it.name,it.biography.publisher)
+
+            GlideApp.with(this@SearchFragment).load(it[0].image.url).into(imageView_superHero_image)
+            //GlideApp.with(this@SearchFragment).load(it.image.url).into(imageView_superHero_image)
         })
     }
 
@@ -74,7 +78,7 @@ class SearchFragment : ScopedFragment(), KodeinAware {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                //search after text is submitted
+                // TODO: implement search
                 return false
             }
 
