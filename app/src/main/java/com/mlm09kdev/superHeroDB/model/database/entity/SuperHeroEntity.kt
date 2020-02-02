@@ -1,12 +1,11 @@
 package com.mlm09kdev.superHeroDB.model.database.entity
 
-import androidx.annotation.Nullable
 import androidx.room.Embedded
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.mlm09kdev.superHeroDB.model.database.entity.*
 
-@Entity(tableName = "superHero")
+@Entity(tableName = "superHero", indices = [Index(value = ["id"], unique = true)])
 data class SuperHeroEntity(
 
     @PrimaryKey(autoGenerate = false)

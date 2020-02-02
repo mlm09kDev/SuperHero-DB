@@ -17,8 +17,10 @@ class SuperHeroRepositoryImpl(
 
     init {
         networkDataSource.downloadedSuperHero.observeForever { newSuperHero ->
-            for (item in newSuperHero.results) {
-                persistFetchedSuperHero(item)
+            if (newSuperHero.results != null) {
+                for (item in newSuperHero.results) {
+                    persistFetchedSuperHero(item)
+                }
             }
         }
     }
@@ -50,8 +52,8 @@ class SuperHeroRepositoryImpl(
     //check API every 24 hours
     //TODO: check only once every 24
     private fun isFetchingSuperHeroNeeded(lastFetchedTime: ZonedDateTime): Boolean {
-        // val timeSinceLastFetch = ZonedDateTime.now().minusDays(1)
-        // return lastFetchedTime.isBefore(timeSinceLastFetch)
+        val timeSinceLastFetch = ZonedDateTime.now().minusDays(1)
+        return lastFetchedTime.isBefore(timeSinceLastFetch)
         return true
     }
 }

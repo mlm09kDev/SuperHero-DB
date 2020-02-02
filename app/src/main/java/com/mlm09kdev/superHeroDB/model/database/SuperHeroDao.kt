@@ -17,6 +17,6 @@ interface SuperHeroDao {
     fun getAllSuperHero():LiveData<List<SuperHeroEntity>>
 
     //todo find way to change id to int instead of string
-    @Query("select * from superHero where name = :name")
+    @Query("select * from superHero where name like :name")
     fun getSuperHero(name: String):LiveData<List<SuperHeroEntity>>
 }

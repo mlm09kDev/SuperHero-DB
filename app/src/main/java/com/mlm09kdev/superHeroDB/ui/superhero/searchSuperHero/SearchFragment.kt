@@ -3,6 +3,7 @@ package com.mlm09kdev.superHeroDB.ui.superhero.searchSuperHero
 import android.os.Bundle
 import android.view.*
 import android.widget.SearchView
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.mlm09kdev.superHeroDB.R
@@ -46,19 +47,23 @@ class SearchFragment : ScopedFragment(), KodeinAware {
     private fun bindUI() = launch {
         val superHero = viewModel.superHero.await()
         superHero.observe(this@SearchFragment, Observer {
-            if (it.isEmpty()) 
+            if (it == null )
                 return@Observer
             group_loading.visibility = View.GONE
+            if (it.isEmpty()) {
+                textView_superHero_name.text = "no search results"
+            } else {
+                updateSuperHeroInfo(it[0].name, it[0].biography.publisher)
+                // updateSuperHeroInfo(it.name,it.biography.publisher)
 
-            updateSuperHeroInfo(it[0].name,it[0].biography.publisher)
-           // updateSuperHeroInfo(it.name,it.biography.publisher)
-
-            GlideApp.with(this@SearchFragment).load(it[0].image.url).into(imageView_superHero_image)
-            //GlideApp.with(this@SearchFragment).load(it.image.url).into(imageView_superHero_image)
+                GlideApp.with(this@SearchFragment).load(it[0].image.url)
+                    .into(imageView_superHero_image)
+                //GlideApp.with(this@SearchFragment).load(it.image.url).into(imageView_superHero_image)
+            }
         })
     }
 
-    private fun updateSuperHeroInfo(name:String, city: String){
+    private fun updateSuperHeroInfo(name: String, city: String) {
         textView_superHero_name.text = name
         textView_superHero_city.text = city
     }
@@ -78,7 +83,6 @@ class SearchFragment : ScopedFragment(), KodeinAware {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                // TODO: implement search
                 return false
             }
 
