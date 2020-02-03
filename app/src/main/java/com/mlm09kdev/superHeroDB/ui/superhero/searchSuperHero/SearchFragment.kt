@@ -28,11 +28,6 @@ class SearchFragment : ScopedFragment(), KodeinAware {
     override val kodein by closestKodein()
     private val viewModelFactory: SearchViewModelFactory by instance()
 
-    companion object {
-        fun newInstance() =
-            SearchFragment()
-    }
-
     private lateinit var viewModel: SearchViewModel
 
     override fun onCreateView(
