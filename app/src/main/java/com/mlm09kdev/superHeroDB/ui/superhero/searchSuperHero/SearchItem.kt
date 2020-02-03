@@ -15,6 +15,7 @@ class SearchItem(val superHeroEntity: SuperHeroEntity) : Item() {
         viewHolder.apply {
             textView_superHero_name.text = superHeroEntity.name
             textView_superHero_city.text = superHeroEntity.biography.publisher
+            textView_superHero_id.text = "ID = "+superHeroEntity.id
             GlideApp.with(this.containerView).load(superHeroEntity.image.url).into(imageView_superHero_image)
         }
     }

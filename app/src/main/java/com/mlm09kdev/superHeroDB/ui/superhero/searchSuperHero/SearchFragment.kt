@@ -50,23 +50,23 @@ class SearchFragment : ScopedFragment(), KodeinAware {
         bindUI()
     }
 
-    private fun bindUI() = launch(Dispatchers.Main) {
-        val superHero = viewModel.superHero.await()
-        superHero.observe(this@SearchFragment, Observer {it ->
-            if (it == null )
+    private fun bindUI(searchQuery: String = "superman") = launch(Dispatchers.Main) {
+        val superHero = viewModel.getSuperHeroList(searchQuery).await()
+        superHero.observe(this@SearchFragment, Observer {
+            if (it == null)
                 return@Observer
             group_loading.visibility = View.GONE
             initRecyclerView(it.toSearchItem())
         })
     }
 
-    private fun List<SuperHeroEntity>.toSearchItem():List<SearchItem>{
+    private fun List<SuperHeroEntity>.toSearchItem(): List<SearchItem> {
         return this.map {
             SearchItem(it)
         }
     }
 
-    private fun initRecyclerView(items : List<SearchItem>){
+    private fun initRecyclerView(items: List<SearchItem>) {
         val groupAdapter = GroupAdapter<ViewHolder>().apply {
             addAll(items)
         }
@@ -76,7 +76,7 @@ class SearchFragment : ScopedFragment(), KodeinAware {
 
         }
         groupAdapter.setOnItemClickListener { item, view ->
-            Toast.makeText(this.context,"added to favs", Toast.LENGTH_SHORT ).show()
+            Toast.makeText(this.context, "added to favs", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -94,13 +94,14 @@ class SearchFragment : ScopedFragment(), KodeinAware {
         searchView.isIconifiedByDefault = false
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-
+            override fun onQueryTextSubmit(query: String): Boolean {
+                //Use '%' to symbolized wildcard' in the search
+                bindUI("%$query%")
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                //ic_search ass text changes
+                //search as text changes
                 return true
             }
         })
