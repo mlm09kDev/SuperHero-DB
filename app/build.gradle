@@ -34,7 +34,10 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8
     }
+}
 
+androidExtensions {
+    experimental = true
 }
 
 dependencies {
@@ -74,6 +77,10 @@ dependencies {
     //Glide
     implementation "com.github.bumptech.glide:glide:$glide_version"
     kapt "com.github.bumptech.glide:compiler:$glide_version"
+
+    //groupie RecyclerView
+    implementation "com.xwray:groupie:$groupie_version"
+    implementation "com.xwray:groupie-kotlin-android-extensions:$groupie_version"
 
     //Testing
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'

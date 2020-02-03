@@ -2,8 +2,8 @@ package com.mlm09kdev.superHeroDB.model.repository
 
 import androidx.lifecycle.LiveData
 import com.mlm09kdev.superHeroDB.model.database.SuperHeroDao
-import com.mlm09kdev.superHeroDB.model.network.NetworkDataSource
 import com.mlm09kdev.superHeroDB.model.database.entity.SuperHeroEntity
+import com.mlm09kdev.superHeroDB.model.network.NetworkDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -16,10 +16,12 @@ class SuperHeroRepositoryImpl(
 ) : SuperHeroRepository {
 
     init {
-        networkDataSource.downloadedSuperHero.observeForever { newSuperHero ->
-            if (newSuperHero.results != null) {
-                for (item in newSuperHero.results) {
-                    persistFetchedSuperHero(item)
+        networkDataSource.apply {
+            downloadedSuperHero.observeForever { newSuperHero ->
+                if (newSuperHero.results != null) {
+                    for (item in newSuperHero.results) {
+                        persistFetchedSuperHero(item)
+                    }
                 }
             }
         }
@@ -54,6 +56,5 @@ class SuperHeroRepositoryImpl(
     private fun isFetchingSuperHeroNeeded(lastFetchedTime: ZonedDateTime): Boolean {
         val timeSinceLastFetch = ZonedDateTime.now().minusDays(1)
         return lastFetchedTime.isBefore(timeSinceLastFetch)
-        return true
     }
 }

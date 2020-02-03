@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">SuperHero DB</string>
     <string name="setting">Setting</string>
-    <string name="seven_days">7 Days</string>
-    <string name="today">Today</string>
+    <string name="seven_days">Favorites</string>
+    <string name="today">Search</string>
     <string name="loading">Loading</string>
 </resources>

@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/todayWeatherFragment"
-        android:icon="@drawable/ic_today_black_24dp"
+        android:id="@+id/searchFragment"
+        android:icon="@drawable/ic_search"
         android:title="@string/today"/>
     <item
-        android:id="@+id/futureWeatherFragment"
-        android:icon="@drawable/ic_date_range_black_24dp"
+        android:id="@+id/favoriteListFragment"
+        android:icon="@drawable/ic_favorite"
         android:title="@string/seven_days"/>
     <item
         android:id="@+id/settingsFragment"

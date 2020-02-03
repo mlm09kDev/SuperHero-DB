@@ -9,14 +9,14 @@ import android.view.ViewGroup
 
 import com.mlm09kdev.superHeroDB.R
 
-class SuperHeroListFragment : Fragment() {
+class FavoriteListFragment : Fragment() {
 
     companion object {
         fun newInstance() =
-            SuperHeroListFragment()
+            FavoriteListFragment()
     }
 
-    private lateinit var viewModel: SuperHeroListViewModel
+    private lateinit var viewModel: FavoriteListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +27,7 @@ class SuperHeroListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(SuperHeroListViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(FavoriteListViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
