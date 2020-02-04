@@ -5,9 +5,9 @@ import android.view.*
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mlm09kdev.superHeroDB.R
 import com.mlm09kdev.superHeroDB.model.database.entity.SuperHeroEntity
@@ -47,7 +47,7 @@ class SearchFragment : ScopedFragment(), KodeinAware {
 
     private fun bindUI(searchQuery: String = "superman") = launch(Dispatchers.Main) {
         val superHero = viewModel.getSuperHeroList(searchQuery).await()
-        superHero.observe(this@SearchFragment, Observer {
+        superHero.observe(viewLifecycleOwner, Observer {
             if (it == null)
                 return@Observer
             group_loading.visibility = View.GONE
@@ -71,8 +71,14 @@ class SearchFragment : ScopedFragment(), KodeinAware {
 
         }
         groupAdapter.setOnItemClickListener { item, view ->
-            Toast.makeText(this.context, "added to favs", Toast.LENGTH_SHORT).show()
+            showSuperHeroDetails("257", view)
+            (item as? SuperHeroEntity)?.let { showSuperHeroDetails(it.id, view) }
         }
+    }
+    private fun showSuperHeroDetails(id: String, view: View){
+
+        val actionDetail = SearchFragmentDirections.actionSearchFragmentToDetailsFragment(id)
+        Navigation.findNavController(view).navigate(actionDetail)
     }
 
     /**

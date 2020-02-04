@@ -35,6 +35,12 @@ class SuperHeroRepositoryImpl(
         }
     }
 
+    override suspend fun getSuperHeroById(id: String): LiveData<SuperHeroEntity> {
+        return withContext(Dispatchers.IO) {
+            return@withContext superHeroDao.getSuperHeroById(id)
+        }
+    }
+
     private fun persistFetchedSuperHero(fetchedSuperHero: SuperHeroEntity) {
         GlobalScope.launch(Dispatchers.IO) {
             superHeroDao.updateAndInsert(fetchedSuperHero)

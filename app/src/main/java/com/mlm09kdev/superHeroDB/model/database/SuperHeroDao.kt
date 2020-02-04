@@ -1,10 +1,7 @@
 package com.mlm09kdev.superHeroDB.model.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.mlm09kdev.superHeroDB.model.database.entity.SuperHeroEntity
 
 @Dao
@@ -19,4 +16,12 @@ interface SuperHeroDao {
     //todo find way to change id to int instead of string
     @Query("select * from superHero where name like :name order by id ASC")
     fun getSuperHero(name: String):LiveData<List<SuperHeroEntity>>
+
+
+    @Query("select * from superHero where id = :id")
+    fun getSuperHeroById(id: String):LiveData<SuperHeroEntity>
+
+    @Query("delete from superHero where id = :id")
+    fun deleteSuperHeroById(id: String)
+
 }
