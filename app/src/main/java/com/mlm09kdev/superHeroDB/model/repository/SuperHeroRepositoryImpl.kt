@@ -28,7 +28,6 @@ class SuperHeroRepositoryImpl(
     }
 
     override suspend fun getSuperHero(name: String): LiveData<List<SuperHeroEntity>> {
-
         return withContext(Dispatchers.IO) {
             initSuperHeroData(name)
             return@withContext superHeroDao.getSuperHero(name)
@@ -38,6 +37,12 @@ class SuperHeroRepositoryImpl(
     override suspend fun getSuperHeroById(id: String): LiveData<SuperHeroEntity> {
         return withContext(Dispatchers.IO) {
             return@withContext superHeroDao.getSuperHeroById(id)
+        }
+    }
+
+    override suspend fun getAllSuperHeros(): LiveData<List<SuperHeroEntity>> {
+        return withContext(Dispatchers.IO) {
+            return@withContext superHeroDao.getAllSuperHero()
         }
     }
 

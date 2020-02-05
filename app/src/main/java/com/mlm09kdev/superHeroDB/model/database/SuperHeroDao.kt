@@ -10,7 +10,7 @@ interface SuperHeroDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun updateAndInsert(superHeroEntity: SuperHeroEntity)
 
-    @Query("select * from superHero")
+    @Query("select * from superHero order by id ASC")
     fun getAllSuperHero():LiveData<List<SuperHeroEntity>>
 
     //todo find way to change id to int instead of string

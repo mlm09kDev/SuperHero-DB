@@ -8,6 +8,7 @@ import com.mlm09kdev.superHeroDB.model.repository.SuperHeroRepository
 import com.mlm09kdev.superHeroDB.model.repository.SuperHeroRepositoryImpl
 import com.mlm09kdev.superHeroDB.ui.superhero.details.DetailsViewModelFactory
 import com.mlm09kdev.superHeroDB.ui.superhero.searchSuperHero.SearchViewModelFactory
+import com.mlm09kdev.superHeroDB.ui.superhero.superherolist.FavoritesViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
@@ -28,6 +29,7 @@ class SuperHeroApplication : Application(), KodeinAware {
         bind<NetworkDataSource>()with singleton { NetworkDataSourceImpl(instance()) }
         bind<SuperHeroRepository>()with singleton { SuperHeroRepositoryImpl(instance(),instance()) }
         bind() from provider { SearchViewModelFactory(instance()) }
+        bind() from provider { FavoritesViewModelFactory(instance()) }
         bind() from factory{id: String -> DetailsViewModelFactory(instance(),id)}
 
     }
