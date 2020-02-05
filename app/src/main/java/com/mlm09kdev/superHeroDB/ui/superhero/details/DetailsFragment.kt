@@ -43,7 +43,6 @@ class DetailsFragment : ScopedFragment(), KodeinAware {
         bindUI()
     }
 
-
     private fun bindUI() = launch(Dispatchers.Main) {
         val superHero = viewModel.superHero.await()
         superHero.observe(viewLifecycleOwner, Observer {
@@ -60,5 +59,4 @@ class DetailsFragment : ScopedFragment(), KodeinAware {
                 .into(imageView_details_superHero_image)
         })
     }
-
 }
