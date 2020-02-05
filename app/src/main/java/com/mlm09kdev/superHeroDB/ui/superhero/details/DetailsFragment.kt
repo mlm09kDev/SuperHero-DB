@@ -10,7 +10,6 @@ import com.mlm09kdev.superHeroDB.R
 import com.mlm09kdev.superHeroDB.ui.ScopedFragment
 import com.mlm09kdev.superHeroDB.utils.glide.GlideApp
 import kotlinx.android.synthetic.main.details_fragment.*
-import kotlinx.android.synthetic.main.search_superhero_layout.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
@@ -56,7 +55,8 @@ class DetailsFragment : ScopedFragment(), KodeinAware {
             textView_details_superHero_name.text = it.name
             textView_details_superHero_id.text = it.id
 
-            GlideApp.with(this@DetailsFragment).load(it.image.url).centerCrop().error(R.drawable.ic_broken_image)
+            GlideApp.with(this@DetailsFragment).load(it.image.url).centerCrop()
+                .error(R.drawable.ic_broken_image)
                 .into(imageView_details_superHero_image)
         })
     }

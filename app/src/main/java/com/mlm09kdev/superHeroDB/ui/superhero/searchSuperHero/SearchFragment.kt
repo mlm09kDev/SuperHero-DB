@@ -1,9 +1,9 @@
 package com.mlm09kdev.superHeroDB.ui.superhero.searchSuperHero
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.SearchView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -28,25 +28,41 @@ class SearchFragment : ScopedFragment(), KodeinAware {
     override val kodein by closestKodein()
     private val viewModelFactory: SearchViewModelFactory by instance()
 
+
     private lateinit var viewModel: SearchViewModel
+
+    private lateinit var searchString: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         setHasOptionsMenu(true)
+        Log.i("SearchView", "onCreateView")
         return inflater.inflate(R.layout.search_superhero_layout, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         viewModel = ViewModelProvider(this, viewModelFactory).get(SearchViewModel::class.java)
         (activity as? AppCompatActivity)?.supportActionBar?.title = "Search Super Hero Database"
         bindUI()
     }
 
-    private fun bindUI(searchQuery: String = "superman") = launch(Dispatchers.Main) {
-        val superHero = viewModel.getSuperHeroList(searchQuery).await()
+    override fun onSaveInstanceState(savedInstanceState: Bundle) {
+        super.onSaveInstanceState(savedInstanceState)
+        savedInstanceState.putString("SearchString", searchString)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        searchString = savedInstanceState?.getString("SearchString").toString()
+    }
+
+
+    private fun bindUI() = launch(Dispatchers.Main) {
+        val superHero = viewModel.getSuperHeroList(searchString).await()
         superHero.observe(viewLifecycleOwner, Observer {
             if (it == null)
                 return@Observer
@@ -74,7 +90,8 @@ class SearchFragment : ScopedFragment(), KodeinAware {
             (item as? SearchItem)?.let { showSuperHeroDetails(it.superHeroEntity.id, view) }
         }
     }
-    private fun showSuperHeroDetails(id: String, view: View){
+
+    private fun showSuperHeroDetails(id: String, view: View) {
 
         val actionDetail = SearchFragmentDirections.actionSearchFragmentToDetailsFragment(id)
         Navigation.findNavController(view).navigate(actionDetail)
@@ -95,7 +112,8 @@ class SearchFragment : ScopedFragment(), KodeinAware {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 //Use '%' to symbolized wildcard' in the search
-                bindUI("%$query%")
+                searchString = "%$query%"
+                bindUI()
                 return false
             }
 
