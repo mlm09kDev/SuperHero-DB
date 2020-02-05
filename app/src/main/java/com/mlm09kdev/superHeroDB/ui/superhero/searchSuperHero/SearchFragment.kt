@@ -71,8 +71,7 @@ class SearchFragment : ScopedFragment(), KodeinAware {
 
         }
         groupAdapter.setOnItemClickListener { item, view ->
-            showSuperHeroDetails("257", view)
-            (item as? SuperHeroEntity)?.let { showSuperHeroDetails(it.id, view) }
+            (item as? SearchItem)?.let { showSuperHeroDetails(it.superHeroEntity.id, view) }
         }
     }
     private fun showSuperHeroDetails(id: String, view: View){
@@ -84,7 +83,6 @@ class SearchFragment : ScopedFragment(), KodeinAware {
     /**
      * Inflates the overflow menu that contains filtering options.
      */
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menu.clear()
         inflater.inflate(R.menu.search, menu)

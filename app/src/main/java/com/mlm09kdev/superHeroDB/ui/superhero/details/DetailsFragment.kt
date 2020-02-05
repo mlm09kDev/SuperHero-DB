@@ -47,11 +47,11 @@ class DetailsFragment : ScopedFragment(), KodeinAware {
 
     private fun bindUI() = launch(Dispatchers.Main) {
         val superHero = viewModel.superHero.await()
-        superHero.observe(this@DetailsFragment, Observer {
+        superHero.observe(viewLifecycleOwner, Observer {
             if (it == null)
                 return@Observer
 
-            group_loading.visibility = View.GONE
+            group_details_loading.visibility = View.GONE
             textView_details_superHero_city.text = it.biography.publisher
             textView_details_superHero_name.text = it.name
             textView_details_superHero_id.text = it.id
