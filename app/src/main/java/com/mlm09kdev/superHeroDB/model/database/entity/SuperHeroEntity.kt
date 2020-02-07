@@ -46,6 +46,6 @@ data class SuperHeroEntity(
         if(image != other.image)
             return false
 
-        return super.equals(other)
+        return true
     }
 }

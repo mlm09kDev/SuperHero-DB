@@ -19,3 +19,25 @@ data class Biography(
     val placeOfBirth: String,
     val publisher: String
 )
+{
+    override fun equals(other: Any?): Boolean {
+        if(javaClass != other?.javaClass)
+            return false
+
+        other as Biography
+        if(alignment != other.alignment)
+            return false
+        if(alterEgos != other.alterEgos)
+            return false
+        if(firstAppearance != other.firstAppearance)
+            return false
+        if(fullName != other.fullName)
+            return false
+        if(placeOfBirth != other.placeOfBirth)
+            return false
+        if(publisher != other.publisher)
+            return false
+
+        return true
+    }
+}

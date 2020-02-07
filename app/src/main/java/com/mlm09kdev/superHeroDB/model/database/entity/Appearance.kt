@@ -13,3 +13,19 @@ data class Appearance(
     val race: String
    // val weight: List<String>
 )
+{
+    override fun equals(other: Any?): Boolean {
+        if(javaClass != other?.javaClass)
+            return false
+
+        other as Appearance
+        if(eyeColor != other.eyeColor)
+            return false
+        if(gender != other.gender)
+            return false
+        if(hairColor != other.hairColor)
+            return false
+
+        return true
+    }
+}
