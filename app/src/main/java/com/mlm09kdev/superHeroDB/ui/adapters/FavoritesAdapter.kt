@@ -3,6 +3,7 @@ package com.mlm09kdev.superHeroDB.ui.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mlm09kdev.superHeroDB.R
 import com.mlm09kdev.superHeroDB.model.database.entity.SuperHeroEntity
@@ -40,8 +41,30 @@ class FavoritesAdapter(onSuperHeroClickListener: OnSuperHeroClickListener) :
         return items.size
     }
 
-    fun submitSuperHeroList(list: List<SuperHeroEntity>) {
-        items = list
+    fun submitSuperHeroList(superHeroList: List<SuperHeroEntity>) {
+        val oldSuperHeroList = items
+        val diffResult:DiffUtil.DiffResult = DiffUtil.calculateDiff(SuperHeroItemDiffCallBack(oldSuperHeroList,superHeroList))
+        items = superHeroList
+        diffResult.dispatchUpdatesTo(this)
+
+    }
+
+    internal inner class SuperHeroItemDiffCallBack(var newSuperHeroList: List<SuperHeroEntity>, var oldSuperHeroList: List<SuperHeroEntity>) : DiffUtil.Callback(){
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return (oldSuperHeroList[oldItemPosition].id == newSuperHeroList[newItemPosition].id)
+        }
+
+        override fun getOldListSize(): Int {
+           return oldSuperHeroList.size
+        }
+
+        override fun getNewListSize(): Int {
+           return newSuperHeroList.size
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldSuperHeroList[oldItemPosition].equals(newSuperHeroList[newItemPosition])
+        }
 
     }
 
@@ -70,8 +93,6 @@ class FavoritesAdapter(onSuperHeroClickListener: OnSuperHeroClickListener) :
             GlideApp.with(itemView.context).load(superHeroEntity.image.url).centerCrop()
                 .error(R.drawable.ic_broken_image)
                 .into(favoritesImage)
-
-
         }
 
         override fun onClick(view: View?) {

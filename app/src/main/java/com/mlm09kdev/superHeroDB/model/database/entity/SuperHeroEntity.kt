@@ -23,4 +23,29 @@ data class SuperHeroEntity(
     val connections: Connections,
     @Embedded(prefix = "image_")
     val image: Image
-)
+){
+    override fun equals(other: Any?): Boolean {
+        if(javaClass != other?.javaClass)
+            return false
+
+        other as SuperHeroEntity
+        if(id != other.id)
+            return false
+        if(name != other.name)
+            return false
+        if(powerstats != other.powerstats)
+            return false
+        if(biography != other.biography)
+            return false
+        if(appearance != other.appearance)
+            return false
+        if(work != other.work)
+            return false
+        if(connections != other.connections)
+            return false
+        if(image != other.image)
+            return false
+
+        return super.equals(other)
+    }
+}
