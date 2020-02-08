@@ -15,6 +15,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.mlm09kdev.superHeroDB.R
 import com.mlm09kdev.superHeroDB.model.database.entity.SuperHeroEntity
 import com.mlm09kdev.superHeroDB.ui.ScopedFragment
+import com.mlm09kdev.superHeroDB.utils.ItemDecorator
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.search_superhero_layout.*
@@ -84,6 +85,7 @@ class SearchFragment : ScopedFragment(), KodeinAware {
         val groupAdapter = GroupAdapter<ViewHolder>().apply {
             addAll(items)
         }
+        //recyclerView_search_results.addItemDecoration(ItemDecorator(resources.getDimension(R.dimen.card_view_margin).toInt()))
         recyclerView_search_results.apply {
             layoutManager =
                 if (Configuration.ORIENTATION_LANDSCAPE == resources.configuration.orientation)

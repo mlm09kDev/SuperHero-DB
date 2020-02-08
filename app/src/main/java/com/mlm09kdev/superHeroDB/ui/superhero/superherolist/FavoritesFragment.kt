@@ -16,6 +16,7 @@ import com.mlm09kdev.superHeroDB.model.database.entity.SuperHeroEntity
 import com.mlm09kdev.superHeroDB.ui.ScopedFragment
 import com.mlm09kdev.superHeroDB.ui.adapters.FavoritesAdapter
 import com.mlm09kdev.superHeroDB.ui.superhero.searchSuperHero.SearchFragmentDirections
+import com.mlm09kdev.superHeroDB.utils.ItemDecorator
 import kotlinx.android.synthetic.main.favorites_fragment_layout.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -58,6 +59,9 @@ class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSupe
     }
 
     private fun initRecyclerView() {
+        recyclerView_favorites.addItemDecoration(
+            ItemDecorator(resources.getDimension(R.dimen.list_view_margin).toInt())
+        )
         recyclerView_favorites.apply {
             layoutManager = LinearLayoutManager(this@FavoritesFragment.context)
             favoritesAdapter = FavoritesAdapter(this@FavoritesFragment)
@@ -68,9 +72,10 @@ class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSupe
     private fun addDataToRecyclerView(superHeroList: List<SuperHeroEntity>) {
         favoritesAdapter.submitSuperHeroList(superHeroList)
     }
+
     override fun onItemClick(position: String, view: View?) {
         Log.i("favoritesFragment", "item:$position was clicked")
-        showSuperHeroDetails(position,view!!)
+        showSuperHeroDetails(position, view!!)
     }
 
 
