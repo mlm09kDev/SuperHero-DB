@@ -4,67 +4,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
+    android:layout_margin="2dp"
     app:cardCornerRadius="5dp">
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/primary_light"
         android:minHeight="?listPreferredItemHeightLarge">
 
         <ImageView
-            android:id="@+id/imageView_superHero_image"
-            android:layout_width="0dp"
-            android:layout_height="266dp"
-            android:layout_marginStart="8dp"
+            android:id="@+id/imageView_search_image"
+            android:layout_width="383dp"
+            android:layout_height="253dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:scaleType="centerCrop"
+            android:layout_marginBottom="8dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/ImageView_search_firstSeen_icon"
+            app:layout_constraintTop_toBottomOf="@+id/textView_search_first_appeared"
+            app:layout_constraintVertical_bias="1.0"
             tools:src="@tools:sample/backgrounds/scenic" />
 
         <TextView
-            android:id="@+id/textView_superHero_name"
+            android:id="@+id/textView_search_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text=""
-            android:textColor="#de000000"
-            android:textSize="39sp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textStyle="bold"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_header"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView_superHero_image"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Batman" />
 
         <TextView
-            android:id="@+id/textView_superHero_city"
+            android:id="@+id/textView_search_publisher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:paddingStart="1dp"
             android:text=""
-            android:textColor="#de000000"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_superHero_name"
-            tools:text="Gotham" />
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_subHeader"
+            app:layout_constraintStart_toStartOf="@+id/textView_search_name"
+            app:layout_constraintTop_toBottomOf="@+id/textView_search_name"
+            tools:text="DC Comics" />
 
         <TextView
-            android:id="@+id/textView_superHero_id"
+            android:id="@+id/textView_search_first_appeared"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text=""
+            android:textColor="@color/primary_text"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ImageView_search_firstSeen_icon"
+            app:layout_constraintTop_toTopOf="@+id/ImageView_search_firstSeen_icon"
+            tools:text=" sdgsdfgsdfgsfgsdfgsdfgf gf gdfg gdfgs sgsdf sdgsdfg dsd sgsd gsdg sdg sgsdg sdgsdfg sdfgsdfg s gsdfg sdfgsdfg sdg sdg sdfgsd gssdfg sdfg sdfgsdfg sdg " />
+
+        <ImageView
+            android:id="@+id/ImageView_search_firstSeen_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
-            android:textColor="#de000000"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView_superHero_city"
-            app:layout_constraintTop_toTopOf="@+id/textView_superHero_city"
-            tools:text="ID = 67" />
+            android:layout_marginStart="8dp"
+            android:src="@drawable/ic_first_seen_eye"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_search_publisher" />
 
+        <TextView
+            android:id="@+id/textView_search_affiliation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_subHeader"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_search_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView_search_name"
+            tools:text="Good" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

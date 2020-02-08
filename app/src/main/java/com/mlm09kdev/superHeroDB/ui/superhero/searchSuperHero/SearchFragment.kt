@@ -1,5 +1,6 @@
 package com.mlm09kdev.superHeroDB.ui.superhero.searchSuperHero
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mlm09kdev.superHeroDB.R
 import com.mlm09kdev.superHeroDB.model.database.entity.SuperHeroEntity
@@ -66,7 +68,7 @@ class SearchFragment : ScopedFragment(), KodeinAware {
         superHero.observe(viewLifecycleOwner, Observer {
             if (it == null)
                 return@Observer
-            group_loading.visibility = View.GONE
+            group_search_loading.visibility = View.GONE
             initRecyclerView(it.toSearchItem())
         })
     }
@@ -81,10 +83,13 @@ class SearchFragment : ScopedFragment(), KodeinAware {
         val groupAdapter = GroupAdapter<ViewHolder>().apply {
             addAll(items)
         }
-        recyclerView_searchResults.apply {
-            layoutManager = LinearLayoutManager(this@SearchFragment.context)
+        recyclerView_search_results.apply {
+            layoutManager =
+                if (Configuration.ORIENTATION_LANDSCAPE == resources.configuration.orientation)
+                    GridLayoutManager(this@SearchFragment.context, 2)
+                else
+                    LinearLayoutManager(this@SearchFragment.context)
             adapter = groupAdapter
-
         }
         groupAdapter.setOnItemClickListener { item, view ->
             (item as? SearchItem)?.let { showSuperHeroDetails(it.superHeroEntity.id, view) }
