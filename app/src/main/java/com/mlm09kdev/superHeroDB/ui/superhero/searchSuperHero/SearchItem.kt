@@ -1,6 +1,5 @@
 package com.mlm09kdev.superHeroDB.ui.superhero.searchSuperHero
 
-import android.graphics.drawable.Drawable
 import com.mlm09kdev.superHeroDB.R
 import com.mlm09kdev.superHeroDB.model.database.entity.SuperHeroEntity
 import com.mlm09kdev.superHeroDB.utils.glide.GlideApp
@@ -16,14 +15,15 @@ class SearchItem(val superHeroEntity: SuperHeroEntity) : Item() {
 
     override fun bind(viewHolder: ViewHolder, position: Int) {
         viewHolder.apply {
-            textView_superHero_name.text = superHeroEntity.name
-            textView_superHero_city.text = superHeroEntity.biography.publisher
-            textView_superHero_id.text = "ID = " + superHeroEntity.id
+            textView_search_name.text = superHeroEntity.name
+            textView_search_publisher.text = superHeroEntity.biography.publisher
+            textView_search_first_appeared.text = superHeroEntity.biography.firstAppearance
+            textView_search_affiliation.text = superHeroEntity.biography.alignment.capitalize()
             GlideApp.with(this.containerView).load(superHeroEntity.image.url).centerCrop().error(R.drawable.ic_broken_image)
-                .into(imageView_superHero_image)
-
+                .into(imageView_search_image)
         }
     }
 
     override fun getLayout() = R.layout.item_superhero_card
+
 }

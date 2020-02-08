@@ -113,6 +113,7 @@ class SearchFragment : ScopedFragment(), KodeinAware {
         searchView.isIconified = false
         searchView.queryHint = "Super Hero Name"
         searchView.isIconifiedByDefault = false
+        searchView.maxWidth=Integer.MAX_VALUE
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
