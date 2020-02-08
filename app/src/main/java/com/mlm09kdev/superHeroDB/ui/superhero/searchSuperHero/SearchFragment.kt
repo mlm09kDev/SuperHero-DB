@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.mlm09kdev.superHeroDB.R
 import com.mlm09kdev.superHeroDB.model.database.entity.SuperHeroEntity
 import com.mlm09kdev.superHeroDB.ui.ScopedFragment
@@ -92,7 +93,9 @@ class SearchFragment : ScopedFragment(), KodeinAware {
             adapter = groupAdapter
         }
         groupAdapter.setOnItemClickListener { item, view ->
-            (item as? SearchItem)?.let { showSuperHeroDetails(it.superHeroEntity.id, view) }
+            (item as? SearchItem)?.let {
+                Snackbar.make(view, it.superHeroEntity.name, Snackbar.LENGTH_SHORT).show()
+                showSuperHeroDetails(it.superHeroEntity.id, view) }
         }
     }
 

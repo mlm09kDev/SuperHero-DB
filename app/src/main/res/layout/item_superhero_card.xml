@@ -69,13 +69,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ImageView_search_firstSeen_icon"
             app:layout_constraintTop_toTopOf="@+id/ImageView_search_firstSeen_icon"
-            tools:text=" sdgsdfgsdfgsfgsdfgsdfgf gf gdfg gdfgs sgsdf sdgsdfg dsd sgsd gsdg sdg sgsdg sdgsdfg sdfgsdfg s gsdfg sdfgsdfg sdg sdg sdfgsd gssdfg sdfg sdfgsdfg sdg " />
+            tools:text="In this session, we will discuss how to approach building pricing" />
 
         <ImageView
             android:id="@+id/ImageView_search_firstSeen_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:tint="@color/accent"
             android:src="@drawable/ic_first_seen_eye"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_search_publisher" />
