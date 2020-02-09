@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="5sp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_light"
+        android:orientation="vertical"
+        android:paddingBottom="5dp">
+
+        <TextView
+            android:id="@+id/textView_biography_header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Biography"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_subHeader"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_biography_fullName_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="8dp"
+            android:text="Full Name:"
+            android:textColor="@color/primary_text"
+            app:layout_constraintStart_toStartOf="@+id/textView_biography_header"
+            app:layout_constraintTop_toBottomOf="@+id/textView_biography_header" />
+
+        <TextView
+            android:id="@+id/textView_biography_fullName_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/secondary_text"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_biography_fullName_header"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textView_biography_fullName_header"
+            app:layout_constraintTop_toTopOf="@+id/textView_biography_fullName_header"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="Bruce WayneWayneWayneWayneWayneWayneWayneWayneWayneWayne WayneWayneWayne WayneWayne " />
+
+
+        <TextView
+            android:id="@+id/textView_biography_placeOfBirth_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Place Of Birth:"
+            android:textColor="@color/primary_text"
+            app:layout_constraintStart_toStartOf="@+id/textView_biography_fullName_header"
+            app:layout_constraintTop_toBottomOf="@+id/textView_biography_fullName_text" />
+
+        <TextView
+            android:id="@+id/textView_biography_placeOfBirth_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/secondary_text"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_biography_placeOfBirth_header"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textView_biography_placeOfBirth_header"
+            app:layout_constraintTop_toTopOf="@+id/textView_biography_placeOfBirth_header"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="Bruce WayneWayneWayneWayneWayneWayneWayneWayneWayneWayne WayneWayneWayne WayneWayne " />
+
+        <TextView
+            android:id="@+id/textView_biography_publisher_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Publisher:"
+            android:textColor="@color/primary_text"
+            app:layout_constraintStart_toStartOf="@+id/textView_biography_placeOfBirth_header"
+            app:layout_constraintTop_toBottomOf="@+id/textView_biography_placeOfBirth_text" />
+
+        <TextView
+            android:id="@+id/textView_biography_publisher_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/secondary_text"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_biography_publisher_header"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textView_biography_publisher_header"
+            app:layout_constraintTop_toTopOf="@+id/textView_biography_publisher_header"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="Bruce WayneWayneWayneWayneWayneWayneWayneWayneWayneWayne WayneWayneWayne WayneWayne " />
+
+        <TextView
+            android:id="@+id/textView_biography_firstAppearance_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="First Appearance:"
+            android:textColor="@color/primary_text"
+            app:layout_constraintStart_toStartOf="@+id/textView_biography_publisher_header"
+            app:layout_constraintTop_toBottomOf="@+id/textView_biography_publisher_text" />
+
+        <TextView
+            android:id="@+id/textView_biography_firstAppearance_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/secondary_text"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_biography_firstAppearance_header"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textView_biography_firstAppearance_header"
+            app:layout_constraintTop_toTopOf="@+id/textView_biography_firstAppearance_header"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="Bruce WayneWayneWayneWayneWayneWayneWayneWayneWayneWayne WayneWayneWayne WayneWayne " />
+
+        <TextView
+            android:id="@+id/textView_biography_alterEgos_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Alter Egos:"
+            android:textColor="@color/primary_text"
+            app:layout_constraintStart_toStartOf="@+id/textView_biography_firstAppearance_header"
+            app:layout_constraintTop_toBottomOf="@+id/textView_biography_firstAppearance_text" />
+
+        <TextView
+            android:id="@+id/textView_biography_alterEgos_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/secondary_text"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_biography_alterEgos_header"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textView_biography_alterEgos_header"
+            app:layout_constraintTop_toTopOf="@+id/textView_biography_alterEgos_header"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="Bruce WayneWayneWayneWayneWayneWayneWayneWayneWayneWayne WayneWayneWayne WayneWayne " />
+
+        <TextView
+            android:id="@+id/textView_biography_alignment_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Alignment:"
+            android:textColor="@color/primary_text"
+            app:layout_constraintStart_toStartOf="@+id/textView_biography_alterEgos_header"
+            app:layout_constraintTop_toBottomOf="@+id/textView_biography_alterEgos_text" />
+
+        <TextView
+            android:id="@+id/textView_biography_alignment_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/secondary_text"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_biography_alignment_header"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textView_biography_alignment_header"
+            app:layout_constraintTop_toTopOf="@+id/textView_biography_alignment_header"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="Bruce WayneWayneWayneWayneWayneWayneWayneWayneWayneWayne WayneWayneWayne WayneWayne " />
+
+        <TextView
+            android:id="@+id/textView_biography_aliases_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Aliases"
+            android:textColor="@color/primary_text"
+            app:layout_constraintStart_toStartOf="@+id/textView_biography_alignment_header"
+            app:layout_constraintTop_toBottomOf="@+id/textView_biography_alignment_text" />
+
+        <TextView
+            android:id="@+id/textView_biography_aliases_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/secondary_text"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_biography_aliases_header"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textView_biography_aliases_header"
+            app:layout_constraintTop_toTopOf="@+id/textView_biography_aliases_header"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="Bruce WayneWayneWayneWayneWayneWayneWayneWayneWayneWayne WayneWayneWayne WayneWayne " />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

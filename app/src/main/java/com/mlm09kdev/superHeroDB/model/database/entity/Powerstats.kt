@@ -2,12 +2,12 @@ package com.mlm09kdev.superHeroDB.model.database.entity
 
 
 data class Powerstats(
-    val combat: String,
-    val durability: String,
-    val intelligence: String,
     val power: String,
+    val intelligence: String,
+    val combat: String,
     val speed: String,
-    val strength: String
+    val strength: String,
+    val durability: String
 ) {
     override fun equals(other: Any?): Boolean {
         if (javaClass != other?.javaClass)

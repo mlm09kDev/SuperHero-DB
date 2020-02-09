@@ -9,7 +9,7 @@
         android:id="@+id/detailsFragment"
         android:name="com.mlm09kdev.superHeroDB.ui.superhero.details.DetailsFragment"
         android:label="details_fragment"
-        tools:layout="@layout/details_fragment" >
+        tools:layout="@layout/details_fragment_layout" >
         <argument
             android:name="id"
             app:argType="string" />

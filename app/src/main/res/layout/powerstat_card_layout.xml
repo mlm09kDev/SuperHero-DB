@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="5sp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:background="@color/primary_light"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView_powerStat_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/primary_light"
+            android:text="Power Stats"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_subHeader" />
+
+        <LinearLayout
+            android:id="@+id/powerstat_layout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="1dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/imageView_powerStat_power"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_weight="9"
+                android:src="@drawable/ic_power_icon"
+                tools:src="@mipmap/ic_launcher_round" />
+
+            <ProgressBar
+                android:id="@+id/progressBar_powerStat_power"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="2"
+                android:max="100"
+                android:progressDrawable="@drawable/progress_bar"
+                tools:progress="54" />
+
+            <TextView
+                android:id="@+id/textView_powerstat_power"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="9"
+                android:gravity="center"
+                android:textColor="@color/primary_text"
+                tools:text="54%" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/powerstat_layout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="1dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/imageView_powerStat_intelligence"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_weight="9"
+                android:src="@drawable/ic_intelligence_icon"
+                tools:src="@mipmap/ic_launcher_round" />
+
+            <ProgressBar
+                android:id="@+id/progressBar_powerStat_intelligence"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="2"
+                android:max="100"
+                android:progressDrawable="@drawable/progress_bar"
+                tools:progress="54" />
+
+            <TextView
+                android:id="@+id/textView_powerstat_intelligence"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="9"
+                android:gravity="center"
+                android:textColor="@color/primary_text"
+                tools:text="54%" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/powerstat_layout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="1dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/imageView_powerStat_combat"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_weight="9"
+                android:src="@drawable/ic_combat"
+                tools:src="@mipmap/ic_launcher_round" />
+
+            <ProgressBar
+                android:id="@+id/progressBar_powerStat_combat"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="2"
+                android:max="100"
+                android:progressDrawable="@drawable/progress_bar"
+                tools:progress="54" />
+
+            <TextView
+                android:id="@+id/textView_powerstat_combat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="9"
+                android:gravity="center"
+                android:textColor="@color/primary_text"
+                tools:text="54%" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/powerstat_layout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="1dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/imageView_powerStat_speed"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_weight="9"
+                android:src="@drawable/ic_speed_icon"
+                tools:src="@mipmap/ic_launcher_round" />
+
+            <ProgressBar
+                android:id="@+id/progressBar_powerStat_speed"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="2"
+                android:max="100"
+                android:progressDrawable="@drawable/progress_bar"
+                tools:progress="54" />
+
+            <TextView
+                android:id="@+id/textView_powerstat_speed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="9"
+                android:gravity="center"
+                android:textColor="@color/primary_text"
+                tools:text="54%" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/powerstat_layout5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="1dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/imageView_powerStat_strength"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_weight="9"
+                android:src="@drawable/ic_strength_icon"
+                tools:src="@mipmap/ic_launcher_round" />
+
+            <ProgressBar
+                android:id="@+id/progressBar_powerStat_strength"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="2"
+                android:max="100"
+                android:progressDrawable="@drawable/progress_bar"
+                tools:progress="54" />
+
+            <TextView
+                android:id="@+id/textView_powerstat_strength"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="9"
+                android:gravity="center"
+                android:textColor="@color/primary_text"
+                tools:text="54%" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/powerstat_layout6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/imageView_powerStat_durability"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_weight="9"
+                android:src="@drawable/ic_durability_icon"
+                tools:src="@mipmap/ic_launcher_round" />
+
+            <ProgressBar
+                android:id="@+id/progressBar_powerStat_durability"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="2"
+                android:max="100"
+                android:progressDrawable="@drawable/progress_bar"
+                tools:progress="54" />
+
+            <TextView
+                android:id="@+id/textView_powerstat_durability"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="9"
+                android:gravity="center"
+                android:textColor="@color/primary_text"
+                tools:text="54%" />
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

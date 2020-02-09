@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.superhero.details.DetailsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_details_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            app:constraint_referenced_ids="progressBar_details_loading,textView_details_loading"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progressBar_details_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:indeterminate="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_details_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/loading"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progressBar_details_loading"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <include
+            android:id="@+id/include_image_layout"
+            layout="@layout/image_card_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/include_powerstat_layout"
+            layout="@layout/powerstat_card_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@color/primary_light"
+            app:layout_constraintEnd_toEndOf="@+id/include_image_layout"
+            app:layout_constraintStart_toStartOf="@+id/include_image_layout"
+            app:layout_constraintTop_toBottomOf="@+id/include_image_layout" />
+
+        <include
+            android:id="@+id/include_biography_layout"
+            layout="@layout/biography_card_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@color/primary_light"
+            app:layout_constraintEnd_toEndOf="@+id/include_powerstat_layout"
+            app:layout_constraintStart_toStartOf="@+id/include_powerstat_layout"
+            app:layout_constraintTop_toBottomOf="@+id/include_powerstat_layout" />
+
+        <include
+            android:id="@+id/include_appearance_layout"
+            layout="@layout/appearance_card_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="@+id/include_biography_layout"
+            app:layout_constraintStart_toStartOf="@+id/include_biography_layout"
+            app:layout_constraintTop_toBottomOf="@+id/include_biography_layout" />
+
+        <include
+            android:id="@+id/include_work_layout"
+            layout="@layout/work_card_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="@+id/include_appearance_layout"
+            app:layout_constraintStart_toStartOf="@+id/include_appearance_layout"
+            app:layout_constraintTop_toBottomOf="@+id/include_appearance_layout" />
+
+        <include
+            android:id="@+id/include_connections_layout"
+            layout="@layout/connections_card_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="@+id/include_work_layout"
+            app:layout_constraintStart_toStartOf="@+id/include_work_layout"
+            app:layout_constraintTop_toBottomOf="@+id/include_work_layout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
