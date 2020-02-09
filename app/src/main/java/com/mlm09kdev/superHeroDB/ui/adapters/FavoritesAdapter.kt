@@ -81,15 +81,16 @@ class FavoritesAdapter(onSuperHeroClickListener: OnSuperHeroClickListener) :
         }
 
         private val favoritesName = itemView.textView_favorites_name
-        private val favoritesId = itemView.textView_favorites_id
+        private val favoritesPublisher = itemView.textView_favorites_publisher
         private val favoritesImage = itemView.imageView_favorites_image
-        private val favoritesCity = itemView.textView_favorites_city
+        private val favoritesFirstAppeared = itemView.textView_favorites_first_appeared
+        private val favoritesAlignment = itemView.textView_favorites_alignment
 
         fun bind(superHeroEntity: SuperHeroEntity) {
             favoritesName.text = superHeroEntity.name
-            favoritesCity.text = superHeroEntity.biography.firstAppearance
-            favoritesId.text = superHeroEntity.id
-
+            favoritesFirstAppeared.text = superHeroEntity.biography.firstAppearance
+            favoritesPublisher.text = superHeroEntity.biography.publisher
+            favoritesAlignment.text = superHeroEntity.biography.alignment.capitalize()
             GlideApp.with(itemView.context).load(superHeroEntity.image.url).centerCrop()
                 .error(R.drawable.ic_broken_image)
                 .into(favoritesImage)

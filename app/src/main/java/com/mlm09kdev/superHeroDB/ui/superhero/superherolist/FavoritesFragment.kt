@@ -1,5 +1,6 @@
 package com.mlm09kdev.superHeroDB.ui.superhero.superherolist
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.mlm09kdev.superHeroDB.R
@@ -64,6 +66,14 @@ class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSupe
         )
         recyclerView_favorites.apply {
             layoutManager = LinearLayoutManager(this@FavoritesFragment.context)
+
+            // orientation change
+           /* layoutManager =
+                if (Configuration.ORIENTATION_LANDSCAPE == resources.configuration.orientation)
+                    GridLayoutManager(this@FavoritesFragment.context, 2)
+                else
+                    LinearLayoutManager(this@FavoritesFragment.context)*/
+
             favoritesAdapter = FavoritesAdapter(this@FavoritesFragment)
             adapter = favoritesAdapter
         }

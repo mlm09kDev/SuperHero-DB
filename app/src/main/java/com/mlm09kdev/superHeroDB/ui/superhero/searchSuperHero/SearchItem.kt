@@ -18,7 +18,7 @@ class SearchItem(val superHeroEntity: SuperHeroEntity) : Item() {
             textView_search_name.text = superHeroEntity.name
             textView_search_publisher.text = superHeroEntity.biography.publisher
             textView_search_first_appeared.text = superHeroEntity.biography.firstAppearance
-            textView_search_affiliation.text = superHeroEntity.biography.alignment.capitalize()
+            textView_search_alignment.text = superHeroEntity.biography.alignment.capitalize()
             GlideApp.with(this.containerView).load(superHeroEntity.image.url).centerCrop().error(R.drawable.ic_broken_image)
                 .into(imageView_search_image)
         }
