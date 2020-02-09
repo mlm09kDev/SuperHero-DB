@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.*
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -15,7 +16,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.mlm09kdev.superHeroDB.R
 import com.mlm09kdev.superHeroDB.model.database.entity.SuperHeroEntity
 import com.mlm09kdev.superHeroDB.ui.ScopedFragment
-import com.mlm09kdev.superHeroDB.utils.ItemDecorator
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.search_superhero_layout.*
@@ -66,7 +66,7 @@ class SearchFragment : ScopedFragment(), KodeinAware {
 
 
     private fun bindUI() = launch(Dispatchers.Main) {
-        val superHero = viewModel.getSuperHeroList(searchString).await()
+        val superHero = viewModel.getSuperHeroListAsync(searchString).await()
         superHero.observe(viewLifecycleOwner, Observer {
             if (it == null)
                 return@Observer
@@ -115,10 +115,10 @@ class SearchFragment : ScopedFragment(), KodeinAware {
         inflater.inflate(R.menu.search, menu)
         val item = menu.findItem(R.id.search)
         val searchView = item.actionView as SearchView
-        searchView.isIconified = false
+        //searchView.isIconified = false
         searchView.queryHint = "Super Hero Name"
-        searchView.isIconifiedByDefault = false
-        searchView.maxWidth=Integer.MAX_VALUE
+       // searchView.isIconifiedByDefault = false
+        searchView.maxWidth = Integer.MAX_VALUE
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
