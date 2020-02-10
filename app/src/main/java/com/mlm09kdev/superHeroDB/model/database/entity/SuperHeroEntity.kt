@@ -22,28 +22,32 @@ data class SuperHeroEntity(
     @Embedded(prefix = "connections_")
     val connections: Connections,
     @Embedded(prefix = "image_")
-    val image: Image
-){
+    val image: Image,
+    var isFavorite: Int
+
+) {
     override fun equals(other: Any?): Boolean {
-        if(javaClass != other?.javaClass)
+        if (javaClass != other?.javaClass)
             return false
 
         other as SuperHeroEntity
-        if(id != other.id)
+        if (id != other.id)
             return false
-        if(name != other.name)
+        if (name != other.name)
             return false
-        if(powerstats != other.powerstats)
+        if (powerstats != other.powerstats)
             return false
-        if(biography != other.biography)
+        if (biography != other.biography)
             return false
-        if(appearance != other.appearance)
+        if (appearance != other.appearance)
             return false
-        if(work != other.work)
+        if (work != other.work)
             return false
-        if(connections != other.connections)
+        if (connections != other.connections)
             return false
-        if(image != other.image)
+        if (image != other.image)
+            return false
+        if(isFavorite != other.isFavorite)
             return false
 
         return true

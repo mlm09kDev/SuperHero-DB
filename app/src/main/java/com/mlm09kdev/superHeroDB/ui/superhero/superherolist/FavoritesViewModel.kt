@@ -7,6 +7,6 @@ import com.mlm09kdev.superHeroDB.utils.lazyDeferred
 class FavoritesViewModel(private val superHeroRepository: SuperHeroRepository) : ViewModel() {
 
     val superHeroList by lazyDeferred {
-        superHeroRepository.getAllSuperHeros()
+        superHeroRepository.getFavoriteSuperHeroes()
     }
 }

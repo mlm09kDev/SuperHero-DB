@@ -16,6 +16,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.mlm09kdev.superHeroDB.R
 import com.mlm09kdev.superHeroDB.model.database.entity.SuperHeroEntity
 import com.mlm09kdev.superHeroDB.ui.ScopedFragment
+import com.mlm09kdev.superHeroDB.ui.superhero.searchSuperHero.SearchItem.OnItemClickListener
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.search_superhero_layout.*
@@ -26,7 +27,7 @@ import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 
 
-class SearchFragment : ScopedFragment(), KodeinAware {
+class SearchFragment : ScopedFragment(), KodeinAware, OnItemClickListener {
 
     //get the closest kodein from our superHeroApplication.kt
     override val kodein by closestKodein()
@@ -35,6 +36,7 @@ class SearchFragment : ScopedFragment(), KodeinAware {
 
     private lateinit var viewModel: SearchViewModel
 
+    //TODO fix crashing from this lateinit not being initialized when navigating too fast
     private lateinit var searchString: String
 
     override fun onCreateView(
@@ -77,7 +79,7 @@ class SearchFragment : ScopedFragment(), KodeinAware {
 
     private fun List<SuperHeroEntity>.toSearchItem(): List<SearchItem> {
         return this.map {
-            SearchItem(it)
+            SearchItem(it, this@SearchFragment)
         }
     }
 
@@ -96,8 +98,8 @@ class SearchFragment : ScopedFragment(), KodeinAware {
         }
         groupAdapter.setOnItemClickListener { item, view ->
             (item as? SearchItem)?.let {
-                Snackbar.make(view, it.superHeroEntity.name, Snackbar.LENGTH_SHORT).show()
-                showSuperHeroDetails(it.superHeroEntity.id, view) }
+                showSuperHeroDetails(it.superHeroEntity.id, view)
+            }
         }
     }
 
@@ -117,7 +119,7 @@ class SearchFragment : ScopedFragment(), KodeinAware {
         val searchView = item.actionView as SearchView
         //searchView.isIconified = false
         searchView.queryHint = "Super Hero Name"
-       // searchView.isIconifiedByDefault = false
+        // searchView.isIconifiedByDefault = false
         searchView.maxWidth = Integer.MAX_VALUE
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -133,6 +135,12 @@ class SearchFragment : ScopedFragment(), KodeinAware {
                 return true
             }
         })
+    }
+
+    override fun onItemClick(superHeroEntity: SuperHeroEntity) {
+        launch(Dispatchers.IO) {
+            viewModel.updateFavorites(superHeroEntity)
+        }
     }
 
 

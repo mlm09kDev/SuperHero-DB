@@ -40,15 +40,19 @@ class SuperHeroRepositoryImpl(
         }
     }
 
-    override suspend fun getAllSuperHeros(): LiveData<List<SuperHeroEntity>> {
+    override suspend fun getFavoriteSuperHeroes(): LiveData<List<SuperHeroEntity>> {
         return withContext(Dispatchers.IO) {
-            return@withContext superHeroDao.getAllSuperHero()
+            return@withContext superHeroDao.getFavoriteSuperHero()
         }
+    }
+
+    override suspend fun updateFavorite(superHeroEntity:SuperHeroEntity) {
+        superHeroDao.update(superHeroEntity)
     }
 
     private fun persistFetchedSuperHero(fetchedSuperHero: SuperHeroEntity) {
         GlobalScope.launch(Dispatchers.IO) {
-            superHeroDao.updateAndInsert(fetchedSuperHero)
+            superHeroDao.insert(fetchedSuperHero)
 
         }
     }

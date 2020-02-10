@@ -17,4 +17,7 @@ class SearchViewModel(private val superHeroRepository: SuperHeroRepository) : Vi
         }
         return superHero
     }
+    suspend fun updateFavorites(superHeroEntity: SuperHeroEntity){
+        superHeroRepository.updateFavorite(superHeroEntity)
+    }
 }

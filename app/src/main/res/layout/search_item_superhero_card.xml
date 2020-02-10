@@ -84,14 +84,24 @@
             android:id="@+id/textView_search_alignment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/text_size_subHeader"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_search_publisher"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView_search_publisher"
+            tools:text="Good" />
+
+        <CheckBox
+            android:id="@+id/checkbox_search_favoriteCheck"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:button="@android:drawable/btn_star"
+            android:gravity="fill_vertical"
             app:layout_constraintBottom_toBottomOf="@+id/textView_search_name"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView_search_name"
-            tools:text="Good" />
+            app:layout_constraintStart_toEndOf="@+id/textView_search_name"
+            app:layout_constraintTop_toTopOf="@+id/textView_search_name" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
