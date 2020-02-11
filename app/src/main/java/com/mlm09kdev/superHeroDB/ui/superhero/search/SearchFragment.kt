@@ -6,26 +6,32 @@ import android.util.Log
 import android.view.*
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isInvisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mlm09kdev.superHeroDB.R
 import com.mlm09kdev.superHeroDB.model.database.entity.SuperHeroEntity
+import com.mlm09kdev.superHeroDB.ui.MainActivity
 import com.mlm09kdev.superHeroDB.ui.ScopedFragment
 import com.mlm09kdev.superHeroDB.ui.superhero.search.SearchItem.OnItemClickListener
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.search_superhero_layout.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
+import java.lang.NullPointerException
 
 
-class SearchFragment : ScopedFragment(), KodeinAware, OnItemClickListener {
+class SearchFragment : ScopedFragment(), KodeinAware, OnItemClickListener, MainActivity.ShowBars {
 
     //get the closest kodein from our superHeroApplication.kt
     override val kodein by closestKodein()
@@ -41,8 +47,13 @@ class SearchFragment : ScopedFragment(), KodeinAware, OnItemClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        try {
+            activity?.findViewById<AppBarLayout>(R.id.appBar_layout)?.setExpanded(true,true)
+            activity?.findViewById<BottomNavigationView>(R.id.bottom_nav)?.translationY = 0f
+        } catch (e: NullPointerException) {
+            Log.i("SearchView", "null")
+        }
         setHasOptionsMenu(true)
-        Log.i("SearchView", "onCreateView")
         return inflater.inflate(R.layout.search_superhero_layout, container, false)
     }
 
@@ -139,6 +150,10 @@ class SearchFragment : ScopedFragment(), KodeinAware, OnItemClickListener {
         launch(Dispatchers.IO) {
             viewModel.updateFavorites(superHeroEntity)
         }
+    }
+
+    override fun showToolandNavigationBar() {
+
     }
 
 

@@ -10,18 +10,22 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 import com.mlm09kdev.superHeroDB.R
 import com.mlm09kdev.superHeroDB.model.database.entity.SuperHeroEntity
 import com.mlm09kdev.superHeroDB.ui.ScopedFragment
 import com.mlm09kdev.superHeroDB.ui.adapters.FavoritesAdapter
 import com.mlm09kdev.superHeroDB.utils.ItemDecorator
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.favorites_fragment_layout.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
+import java.lang.NullPointerException
 
 class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSuperHeroClickListener {
 
@@ -34,6 +38,13 @@ class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSupe
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        try {
+
+            activity?.findViewById<AppBarLayout>(R.id.appBar_layout)?.setExpanded(true,true)
+            activity?.findViewById<BottomNavigationView>(R.id.bottom_nav)?.translationY = 0f
+        } catch (e: NullPointerException) {
+            Log.i("FavoritesView", "null")
+        }
         setHasOptionsMenu(true)
         Log.i("FavoritesView", "onCreateView")
         return inflater.inflate(R.layout.favorites_fragment_layout, container, false)

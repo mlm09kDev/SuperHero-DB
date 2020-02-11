@@ -2,6 +2,7 @@ package com.mlm09kdev.superHeroDB.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
@@ -26,6 +27,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
+        appBar_layout.setExpanded(true)
         return navController.navigateUp()
     }
+
+    interface ShowBars{
+            fun showToolandNavigationBar()
+        }
 }

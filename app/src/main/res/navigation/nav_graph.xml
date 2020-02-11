@@ -27,7 +27,7 @@
         android:id="@+id/searchFragment"
         android:name="com.mlm09kdev.superHeroDB.ui.superhero.search.SearchFragment"
         android:label="today_weather_fragment"
-        tools:layout="@layout/search_superhero_layout" >
+        tools:layout="@layout/favorites_fragment_layout">
         <action
             android:id="@+id/action_searchFragment_to_detailsFragment"
             app:destination="@+id/detailsFragment" />
