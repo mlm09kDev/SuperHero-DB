@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/favoriteListFragment"
-        android:name="com.mlm09kdev.superHeroDB.ui.superhero.superherolist.FavoritesFragment"
+        android:name="com.mlm09kdev.superHeroDB.ui.superhero.favorites.FavoritesFragment"
         android:label="future_weather_fragment"
         tools:layout="@layout/favorites_fragment_layout" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.mlm09kdev.superHeroDB.ui.superhero.searchSuperHero.SearchFragment"
+        android:name="com.mlm09kdev.superHeroDB.ui.superhero.search.SearchFragment"
         android:label="today_weather_fragment"
         tools:layout="@layout/search_superhero_layout" >
         <action

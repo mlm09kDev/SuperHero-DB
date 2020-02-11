@@ -1,6 +1,5 @@
-package com.mlm09kdev.superHeroDB.ui.superhero.superherolist
+package com.mlm09kdev.superHeroDB.ui.superhero.favorites
 
-import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,14 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.mlm09kdev.superHeroDB.R
 import com.mlm09kdev.superHeroDB.model.database.entity.SuperHeroEntity
 import com.mlm09kdev.superHeroDB.ui.ScopedFragment
 import com.mlm09kdev.superHeroDB.ui.adapters.FavoritesAdapter
-import com.mlm09kdev.superHeroDB.ui.superhero.searchSuperHero.SearchFragmentDirections
 import com.mlm09kdev.superHeroDB.utils.ItemDecorator
 import kotlinx.android.synthetic.main.favorites_fragment_layout.*
 import kotlinx.coroutines.Dispatchers

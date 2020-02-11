@@ -1,4 +1,4 @@
-package com.mlm09kdev.superHeroDB.ui.superhero.searchSuperHero
+package com.mlm09kdev.superHeroDB.ui.superhero.search
 
 import android.util.Log
 import androidx.lifecycle.LiveData

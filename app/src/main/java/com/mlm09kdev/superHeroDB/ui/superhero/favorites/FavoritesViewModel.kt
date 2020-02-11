@@ -1,4 +1,4 @@
-package com.mlm09kdev.superHeroDB.ui.superhero.superherolist
+package com.mlm09kdev.superHeroDB.ui.superhero.favorites
 
 import androidx.lifecycle.ViewModel
 import com.mlm09kdev.superHeroDB.model.repository.SuperHeroRepository

@@ -20,11 +20,13 @@ interface SuperHeroDao {
     @Query("select * from superHero where id = :id")
     fun getSuperHeroById(id: String): LiveData<SuperHeroEntity>
 
+    @Query("select * from superHero where id = :id")
+    fun getNoneLiveDataSuperHeroById(id: String): SuperHeroEntity
+
     @Query("select * from superHero where isFavorite = 1")
     fun getFavoriteSuperHero(): LiveData<List<SuperHeroEntity>>
 
     @Update
     fun update(superHeroEntity: SuperHeroEntity)
-
 
 }

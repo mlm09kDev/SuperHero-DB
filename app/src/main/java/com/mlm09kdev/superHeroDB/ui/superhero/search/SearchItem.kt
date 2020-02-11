@@ -1,4 +1,4 @@
-package com.mlm09kdev.superHeroDB.ui.superhero.searchSuperHero
+package com.mlm09kdev.superHeroDB.ui.superhero.search
 
 import com.google.android.material.snackbar.Snackbar
 import com.mlm09kdev.superHeroDB.R
@@ -44,9 +44,6 @@ class SearchItem(val superHeroEntity: SuperHeroEntity, onClickListener: OnItemCl
     }
 
     override fun getLayout() = R.layout.search_item_superhero_card
-    override fun getId(): Long {
-        return superHeroEntity.id.toLong()
-    }
 
     interface OnItemClickListener {
         fun onItemClick(superHeroEntity: SuperHeroEntity)

@@ -1,4 +1,4 @@
-package com.mlm09kdev.superHeroDB.ui.superhero.searchSuperHero
+package com.mlm09kdev.superHeroDB.ui.superhero.search
 
 import android.content.res.Configuration
 import android.os.Bundle
@@ -6,17 +6,15 @@ import android.util.Log
 import android.view.*
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import com.mlm09kdev.superHeroDB.R
 import com.mlm09kdev.superHeroDB.model.database.entity.SuperHeroEntity
 import com.mlm09kdev.superHeroDB.ui.ScopedFragment
-import com.mlm09kdev.superHeroDB.ui.superhero.searchSuperHero.SearchItem.OnItemClickListener
+import com.mlm09kdev.superHeroDB.ui.superhero.search.SearchItem.OnItemClickListener
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.search_superhero_layout.*

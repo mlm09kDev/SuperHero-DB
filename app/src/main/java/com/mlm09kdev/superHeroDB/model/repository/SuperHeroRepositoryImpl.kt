@@ -52,7 +52,7 @@ class SuperHeroRepositoryImpl(
 
     private fun persistFetchedSuperHero(fetchedSuperHero: SuperHeroEntity) {
         GlobalScope.launch(Dispatchers.IO) {
-            superHeroDao.insert(fetchedSuperHero)
+           insertOrUpdate(fetchedSuperHero)
 
         }
     }
@@ -71,5 +71,13 @@ class SuperHeroRepositoryImpl(
     private fun isFetchingSuperHeroNeeded(lastFetchedTime: ZonedDateTime): Boolean {
         val timeSinceLastFetch = ZonedDateTime.now().minusDays(1)
         return lastFetchedTime.isBefore(timeSinceLastFetch)
+    }
+
+    private fun insertOrUpdate(newSuperHeroEntity: SuperHeroEntity) {
+        var oldSuperHeroEntity = superHeroDao.getNoneLiveDataSuperHeroById(newSuperHeroEntity.id)
+        if (oldSuperHeroEntity == null)
+            superHeroDao.insert(newSuperHeroEntity)
+        else
+            superHeroDao.update(oldSuperHeroEntity)
     }
 }
