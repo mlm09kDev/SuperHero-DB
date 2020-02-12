@@ -2,6 +2,7 @@ package com.mlm09kdev.superHeroDB.ui.superhero.favorites
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Parcelable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +25,7 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 
+
 class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSuperHeroClickListener {
 
     override val kodein by closestKodein()
@@ -32,13 +34,18 @@ class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSupe
     private lateinit var viewModel: FavoritesViewModel
     private lateinit var favoritesAdapter: FavoritesAdapter
     private lateinit var callBackInterface: CallBackInterface
+    private var listState: Parcelable? = null
+
+    companion object {
+        private var mBundleRecyclerViewState: Bundle? = Bundle()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         callBackInterface.showActionAndNavBars()
-       // setHasOptionsMenu(true)
+        // setHasOptionsMenu(true)
         Log.i("FavoritesView", "onCreateView")
         return inflater.inflate(R.layout.favorites_fragment_layout, container, false)
     }
@@ -52,10 +59,23 @@ class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSupe
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if(context is CallBackInterface)
+        if (context is CallBackInterface)
             callBackInterface = context
         else
             throw RuntimeException("$context must implement CallBackInterface")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        val listState: Parcelable? = recyclerView_favorites.layoutManager?.onSaveInstanceState()
+        mBundleRecyclerViewState!!.putParcelable("listState", listState)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (mBundleRecyclerViewState != null) {
+            listState = mBundleRecyclerViewState!!.getParcelable("listState")
+        }
     }
 
     private fun bindUI() = launch(Dispatchers.Main) {
@@ -66,8 +86,11 @@ class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSupe
             group_favorites_loading.visibility = View.GONE
             initRecyclerView()
             addDataToRecyclerView(it)
+            if(listState != null)
+            recyclerView_favorites.layoutManager?.onRestoreInstanceState(listState)
         })
     }
+
 
     private fun initRecyclerView() {
         recyclerView_favorites.addItemDecoration(
@@ -77,11 +100,11 @@ class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSupe
             layoutManager = LinearLayoutManager(this@FavoritesFragment.context)
 
             // orientation change
-           /* layoutManager =
-                if (Configuration.ORIENTATION_LANDSCAPE == resources.configuration.orientation)
-                    GridLayoutManager(this@FavoritesFragment.context, 2)
-                else
-                    LinearLayoutManager(this@FavoritesFragment.context)*/
+            /* layoutManager =
+                 if (Configuration.ORIENTATION_LANDSCAPE == resources.configuration.orientation)
+                     GridLayoutManager(this@FavoritesFragment.context, 2)
+                 else
+                     LinearLayoutManager(this@FavoritesFragment.context)*/
 
             favoritesAdapter = FavoritesAdapter(this@FavoritesFragment)
             adapter = favoritesAdapter
@@ -99,7 +122,6 @@ class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSupe
 
 
     private fun showSuperHeroDetails(id: String, view: View) {
-
         val actionDetail =
             FavoritesFragmentDirections.actionFavoriteListFragmentToDetailsFragment(id)
         Navigation.findNavController(view).navigate(actionDetail)

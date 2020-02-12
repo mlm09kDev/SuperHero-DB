@@ -65,6 +65,7 @@ class SearchFragment : ScopedFragment(), KodeinAware, OnItemClickListener {
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
         super.onSaveInstanceState(savedInstanceState)
         savedInstanceState.putString("SearchString", searchString)
+
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
