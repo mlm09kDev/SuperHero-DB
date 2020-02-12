@@ -1,13 +1,15 @@
 package com.mlm09kdev.superHeroDB.model.database.entity
 
 
+import androidx.room.Embedded
 import androidx.room.Entity
+import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
+import com.mlm09kdev.superHeroDB.model.database.entity.converters.StringListConverter
 
 @Entity(tableName = "biography")
 data class Biography(
-   // @Embedded(prefix ="aliases_" )
-   // val aliases: List<String>,
+    val aliases: List<String>,
     val alignment: String,
     @SerializedName("alter-egos")
     val alterEgos: String,
@@ -36,6 +38,8 @@ data class Biography(
         if(placeOfBirth != other.placeOfBirth)
             return false
         if(publisher != other.publisher)
+            return false
+       if(aliases != other.aliases)
             return false
 
         return true

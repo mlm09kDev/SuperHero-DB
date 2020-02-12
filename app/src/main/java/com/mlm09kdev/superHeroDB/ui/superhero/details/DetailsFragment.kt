@@ -78,159 +78,67 @@ class DetailsFragment : ScopedFragment(), KodeinAware {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if(context is CallBackInterface)
+        if (context is CallBackInterface)
             callBackInterface = context
         else
             throw RuntimeException("$context must implement CallBackInterface")
     }
 
     private fun bindConnections(connections: Connections) {
-
-        textView_connections_groups_text.text =
-            if (connections.groupAffiliation == "null")
-                "-"
-            else
-                connections.groupAffiliation
-        textView_connections_relatives_text.text =
-            if (connections.relatives == "null")
-                "-"
-            else
-                connections.relatives
+        textView_connections_groups_text.text = validateString(connections.groupAffiliation)
+        textView_connections_relatives_text.text = validateString(connections.relatives)
     }
 
     private fun bindWork(work: Work) {
-        textView_work_occupation_text.text =
-            if (work.occupation == "null")
-                "-"
-            else work.occupation
-        textView_work_base_text.text =
-            if (work.base == "null")
-                "-"
-            else work.base
+        textView_work_occupation_text.text = validateString(work.occupation)
+        textView_work_base_text.text = validateString(work.base)
     }
 
     private fun bindAppearance(appearance: Appearance) {
 
-        textView_appearance_gender_text.text =
-            if (appearance.gender == "null")
-                "-"
-            else appearance.gender
-        textView_appearance_race_text.text =
-            if (appearance.race == "null")
-                "-"
-            else appearance.race
-        textView_appearance_eyeColor_text.text =
-            if (appearance.eyeColor == "null")
-                "-"
-            else appearance.eyeColor
-        textView_appearance_hairColor_text.text =
-            if (appearance.hairColor == "null")
-                "-"
-            else appearance.hairColor
+        textView_appearance_gender_text.text = validateString(appearance.gender)
+        textView_appearance_race_text.text = validateString(appearance.race)
+        textView_appearance_eyeColor_text.text = validateString(appearance.eyeColor)
+        textView_appearance_hairColor_text.text = validateString(appearance.hairColor)
         textView_appearance_height_text.text =
-            if (appearance.hairColor == "null")
-                "-"
-            else "temp"
+            validateString(appearance.height.toString()).replace("[", "").replace("]", "")
         textView_appearance_weight_text.text =
-            if (appearance.hairColor == "null")
-                "-"
-            else "temp"
+            validateString(appearance.weight.toString()).replace("[", "").replace("]", "")
     }
 
     private fun bindBiography(biography: Biography) {
-        textView_biography_fullName_text.text =
-            if (biography.fullName == "null")
-                "-"
-            else biography.fullName
-        textView_biography_placeOfBirth_text.text =
-            if (biography.placeOfBirth == "null")
-                "-"
-            else biography.placeOfBirth
-        textView_biography_publisher_text.text =
-            if (biography.publisher == "null")
-                "-"
-            else biography.publisher
-        textView_biography_firstAppearance_text.text =
-            if (biography.firstAppearance == "null")
-                "-"
-            else biography.firstAppearance
-        textView_biography_alterEgos_text.text =
-            if (biography.alterEgos == "null")
-                "-"
-            else biography.alterEgos
-        textView_biography_alignment_text.text =
-            if (biography.alignment == "null")
-                "-"
-            else biography.alignment
+        textView_biography_fullName_text.text = validateString(biography.fullName)
+        textView_biography_placeOfBirth_text.text = validateString(biography.placeOfBirth)
+        textView_biography_publisher_text.text = validateString(biography.publisher)
+        textView_biography_firstAppearance_text.text = validateString(biography.firstAppearance)
+        textView_biography_alterEgos_text.text = validateString(biography.alterEgos)
+        textView_biography_alignment_text.text = validateString(biography.alignment)
         textView_biography_aliases_text.text =
-            if (biography.alignment == "null")
-                "-"
-            else
-                "-"
+            validateString(biography.aliases.toString()).replace("[", "").replace("]", "")
     }
 
     private fun bindPowerStats(powerstats: Powerstats) {
 
-        progressBar_powerStat_power.progress =
-            if (powerstats.power == "null")
-                0
-            else
-                powerstats.power.toInt()
-        textView_powerstat_power.text =
-            if (powerstats.power == "null")
-                "-"
-            else
-                powerstats.power
-        progressBar_powerStat_intelligence.progress =
-            if (powerstats.intelligence == "null")
-                0
-            else
-                powerstats.intelligence.toInt()
-        textView_powerstat_intelligence.text =
-            if (powerstats.intelligence == "null")
-                "-"
-            else
-                powerstats.intelligence
-        progressBar_powerStat_combat.progress =
-            if (powerstats.combat == "null")
-                0
-            else
-                powerstats.combat.toInt()
-        textView_powerstat_combat.text =
-            if (powerstats.combat == "null")
-                "-"
-            else
-                powerstats.combat
-        progressBar_powerStat_speed.progress =
-            if (powerstats.speed == "null")
-                0
-            else
-                powerstats.speed.toInt()
-        textView_powerstat_speed.text =
-            if (powerstats.speed == "null")
-                "-"
-            else
-                powerstats.speed
-        progressBar_powerStat_strength.progress =
-            if (powerstats.strength == "null")
-                0
-            else
-                powerstats.strength.toInt()
-        textView_powerstat_strength.text =
-            if (powerstats.strength == "null")
-                "-"
-            else
-                powerstats.strength
-        progressBar_powerStat_durability.progress =
-            if (powerstats.durability == "null")
-                0
-            else
-                powerstats.durability.toInt()
-        textView_powerstat_durability.text =
-            if (powerstats.durability == "null")
-                "-"
-            else
-                powerstats.durability
+        progressBar_powerStat_power.progress = validateInt(powerstats.power)
+        textView_powerstat_power.text = validateString(powerstats.power)
+        progressBar_powerStat_intelligence.progress = validateInt(powerstats.intelligence)
+        textView_powerstat_intelligence.text = validateString(powerstats.intelligence)
+        progressBar_powerStat_combat.progress = validateInt(powerstats.combat)
+        textView_powerstat_combat.text = validateString(powerstats.combat)
+        progressBar_powerStat_speed.progress = validateInt(powerstats.speed)
+        textView_powerstat_speed.text = validateString(powerstats.speed)
+        progressBar_powerStat_strength.progress = validateInt(powerstats.strength)
+        textView_powerstat_strength.text = validateString(powerstats.strength)
+        progressBar_powerStat_durability.progress = validateInt(powerstats.durability)
+        textView_powerstat_durability.text = validateString(powerstats.durability)
+    }
+
+    private fun validateString(string: String): String {
+        return if (string.isEmpty() || string == "null") "-" else string.capitalize()
+    }
+
+    private fun validateInt(string: String): Int {
+        return if (string.isEmpty() || string == "null") 0 else string.toInt()
     }
 
 }

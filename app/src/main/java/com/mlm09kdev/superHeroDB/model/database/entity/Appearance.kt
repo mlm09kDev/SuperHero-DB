@@ -9,9 +9,9 @@ data class Appearance(
     val gender: String,
     @SerializedName("hair-color")
     val hairColor: String,
-   // val height: List<String>,
-    val race: String
-   // val weight: List<String>
+    val race: String,
+    val height: List<String>,
+    val weight: List<String>
 )
 {
     override fun equals(other: Any?): Boolean {
@@ -24,6 +24,10 @@ data class Appearance(
         if(gender != other.gender)
             return false
         if(hairColor != other.hairColor)
+            return false
+        if(height != other.height)
+            return false
+        if(weight != other.weight)
             return false
 
         return true

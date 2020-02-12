@@ -4,11 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.mlm09kdev.superHeroDB.model.database.entity.SuperHeroEntity
+import com.mlm09kdev.superHeroDB.model.database.entity.converters.StringListConverter
 
 @Database(
     entities = [SuperHeroEntity::class], version = 1, exportSchema = false
 )
+@TypeConverters(StringListConverter::class)
 abstract class SuperHeroDatabase: RoomDatabase() {
     abstract fun superHeroDao(): SuperHeroDao
 
