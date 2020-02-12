@@ -1,20 +1,18 @@
 package com.mlm09kdev.superHeroDB.ui.superhero.details
 
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mlm09kdev.superHeroDB.R
 import com.mlm09kdev.superHeroDB.model.database.entity.*
 import com.mlm09kdev.superHeroDB.ui.ScopedFragment
+import com.mlm09kdev.superHeroDB.utils.CallBackInterface
 import com.mlm09kdev.superHeroDB.utils.glide.GlideApp
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.appearance_card_layout.*
 import kotlinx.android.synthetic.main.biography_card_layout.*
 import kotlinx.android.synthetic.main.connections_card_layout.*
@@ -27,7 +25,6 @@ import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.factory
-import java.lang.NullPointerException
 
 
 class DetailsFragment : ScopedFragment(), KodeinAware {
@@ -38,16 +35,13 @@ class DetailsFragment : ScopedFragment(), KodeinAware {
 
     private lateinit var viewModel: DetailsViewModel
 
+    private lateinit var callBackInterface: CallBackInterface
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       try {
-           activity?.findViewById<AppBarLayout>(R.id.appBar_layout)?.setExpanded(true,true)
-           activity?.findViewById<BottomNavigationView>(R.id.bottom_nav)?.translationY = 0f
-       } catch (e: NullPointerException) {
-            Log.i("DetailsView", "null")
-        }
+        callBackInterface.showActionAndNavBars()
         return inflater.inflate(R.layout.details_fragment_layout, container, false)
     }
 
@@ -82,6 +76,13 @@ class DetailsFragment : ScopedFragment(), KodeinAware {
         })
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if(context is CallBackInterface)
+            callBackInterface = context
+        else
+            throw RuntimeException("$context must implement CallBackInterface")
+    }
 
     private fun bindConnections(connections: Connections) {
 

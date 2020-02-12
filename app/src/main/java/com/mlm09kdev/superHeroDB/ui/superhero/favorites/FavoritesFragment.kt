@@ -1,5 +1,6 @@
 package com.mlm09kdev.superHeroDB.ui.superhero.favorites
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,22 +11,18 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.bottomnavigation.BottomNavigationView
-
 import com.mlm09kdev.superHeroDB.R
 import com.mlm09kdev.superHeroDB.model.database.entity.SuperHeroEntity
 import com.mlm09kdev.superHeroDB.ui.ScopedFragment
 import com.mlm09kdev.superHeroDB.ui.adapters.FavoritesAdapter
+import com.mlm09kdev.superHeroDB.utils.CallBackInterface
 import com.mlm09kdev.superHeroDB.utils.ItemDecorator
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.favorites_fragment_layout.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
-import java.lang.NullPointerException
 
 class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSuperHeroClickListener {
 
@@ -34,18 +31,14 @@ class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSupe
 
     private lateinit var viewModel: FavoritesViewModel
     private lateinit var favoritesAdapter: FavoritesAdapter
+    private lateinit var callBackInterface: CallBackInterface
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        try {
-
-            activity?.findViewById<AppBarLayout>(R.id.appBar_layout)?.setExpanded(true,true)
-            activity?.findViewById<BottomNavigationView>(R.id.bottom_nav)?.translationY = 0f
-        } catch (e: NullPointerException) {
-            Log.i("FavoritesView", "null")
-        }
-        setHasOptionsMenu(true)
+        callBackInterface.showActionAndNavBars()
+       // setHasOptionsMenu(true)
         Log.i("FavoritesView", "onCreateView")
         return inflater.inflate(R.layout.favorites_fragment_layout, container, false)
     }
@@ -55,6 +48,14 @@ class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSupe
         viewModel = ViewModelProvider(this, viewModelFactory).get(FavoritesViewModel::class.java)
         (activity as? AppCompatActivity)?.supportActionBar?.title = "Search Super Hero Database"
         bindUI()
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if(context is CallBackInterface)
+            callBackInterface = context
+        else
+            throw RuntimeException("$context must implement CallBackInterface")
     }
 
     private fun bindUI() = launch(Dispatchers.Main) {

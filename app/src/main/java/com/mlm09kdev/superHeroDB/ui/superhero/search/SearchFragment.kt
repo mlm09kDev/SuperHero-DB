@@ -1,44 +1,39 @@
 package com.mlm09kdev.superHeroDB.ui.superhero.search
 
+import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isInvisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mlm09kdev.superHeroDB.R
 import com.mlm09kdev.superHeroDB.model.database.entity.SuperHeroEntity
-import com.mlm09kdev.superHeroDB.ui.MainActivity
 import com.mlm09kdev.superHeroDB.ui.ScopedFragment
 import com.mlm09kdev.superHeroDB.ui.superhero.search.SearchItem.OnItemClickListener
+import com.mlm09kdev.superHeroDB.utils.CallBackInterface
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.search_superhero_layout.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
-import java.lang.NullPointerException
 
 
-class SearchFragment : ScopedFragment(), KodeinAware, OnItemClickListener, MainActivity.ShowBars {
+class SearchFragment : ScopedFragment(), KodeinAware, OnItemClickListener {
 
     //get the closest kodein from our superHeroApplication.kt
     override val kodein by closestKodein()
     private val viewModelFactory: SearchViewModelFactory by instance()
 
-
     private lateinit var viewModel: SearchViewModel
+    private lateinit var callBackInterface: CallBackInterface
 
     //TODO fix crashing from this lateinit not being initialized when navigating too fast
     private lateinit var searchString: String
@@ -47,22 +42,24 @@ class SearchFragment : ScopedFragment(), KodeinAware, OnItemClickListener, MainA
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        try {
-            activity?.findViewById<AppBarLayout>(R.id.appBar_layout)?.setExpanded(true,true)
-            activity?.findViewById<BottomNavigationView>(R.id.bottom_nav)?.translationY = 0f
-        } catch (e: NullPointerException) {
-            Log.i("SearchView", "null")
-        }
+        callBackInterface.showActionAndNavBars()
         setHasOptionsMenu(true)
         return inflater.inflate(R.layout.search_superhero_layout, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
         viewModel = ViewModelProvider(this, viewModelFactory).get(SearchViewModel::class.java)
         (activity as? AppCompatActivity)?.supportActionBar?.title = "Search Super Hero Database"
         bindUI()
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if(context is CallBackInterface)
+            callBackInterface = context
+        else
+            throw RuntimeException("$context must implement CallBackInterface")
     }
 
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
@@ -151,10 +148,5 @@ class SearchFragment : ScopedFragment(), KodeinAware, OnItemClickListener, MainA
             viewModel.updateFavorites(superHeroEntity)
         }
     }
-
-    override fun showToolandNavigationBar() {
-
-    }
-
 
 }
