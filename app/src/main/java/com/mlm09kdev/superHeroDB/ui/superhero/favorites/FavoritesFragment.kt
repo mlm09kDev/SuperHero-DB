@@ -4,9 +4,9 @@ import android.content.Context
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.view.inputmethod.EditorInfo
+import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -45,7 +45,7 @@ class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSupe
         savedInstanceState: Bundle?
     ): View? {
         callBackInterface.showActionAndNavBars()
-        // setHasOptionsMenu(true)
+        setHasOptionsMenu(true)
         Log.i("FavoritesView", "onCreateView")
         return inflater.inflate(R.layout.favorites_fragment_layout, container, false)
     }
@@ -86,8 +86,8 @@ class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSupe
             group_favorites_loading.visibility = View.GONE
             initRecyclerView()
             addDataToRecyclerView(it)
-            if(listState != null)
-            recyclerView_favorites.layoutManager?.onRestoreInstanceState(listState)
+            if (listState != null)
+                recyclerView_favorites.layoutManager?.onRestoreInstanceState(listState)
         })
     }
 
@@ -127,4 +127,27 @@ class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSupe
         Navigation.findNavController(view).navigate(actionDetail)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        menu.clear()
+        inflater.inflate(R.menu.search, menu)
+        val item = menu.findItem(R.id.search)
+        val searchView = item.actionView as SearchView
+        //searchView.isIconified = false
+        searchView.queryHint = "Super Hero Name"
+       // searchView.isIconifiedByDefault = false
+        searchView.maxWidth = Integer.MAX_VALUE
+
+        searchView.imeOptions = EditorInfo.IME_ACTION_DONE
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(searchText: String?): Boolean {
+                favoritesAdapter.filter.filter(searchText)
+                return true
+            }
+        })
+    }
 }

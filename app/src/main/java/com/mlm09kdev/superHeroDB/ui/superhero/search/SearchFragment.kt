@@ -72,7 +72,6 @@ class SearchFragment : ScopedFragment(), KodeinAware, OnItemClickListener {
 
     }
 
-
     override fun onResume() {
         super.onResume()
         loadState()
@@ -133,7 +132,7 @@ class SearchFragment : ScopedFragment(), KodeinAware, OnItemClickListener {
         val searchView = item.actionView as SearchView
         //searchView.isIconified = false
         searchView.queryHint = "Super Hero Name"
-        // searchView.isIconifiedByDefault = false
+        searchView.isIconifiedByDefault = false
         searchView.maxWidth = Integer.MAX_VALUE
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

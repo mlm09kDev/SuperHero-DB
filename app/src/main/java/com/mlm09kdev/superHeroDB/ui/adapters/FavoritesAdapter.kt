@@ -3,6 +3,8 @@ package com.mlm09kdev.superHeroDB.ui.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mlm09kdev.superHeroDB.R
@@ -12,9 +14,10 @@ import kotlinx.android.synthetic.main.item_superhero_list.view.*
 
 
 class FavoritesAdapter(onSuperHeroClickListener: OnSuperHeroClickListener) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    RecyclerView.Adapter<RecyclerView.ViewHolder>(), Filterable {
 
-    private var items: List<SuperHeroEntity> = emptyList()
+    private var itemsList: MutableList<SuperHeroEntity> = ArrayList()
+    private var itemsListFull: List<SuperHeroEntity> = ArrayList()
     private var onSuperHeroClickListener: OnSuperHeroClickListener
 
     init {
@@ -33,37 +36,42 @@ class FavoritesAdapter(onSuperHeroClickListener: OnSuperHeroClickListener) :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is SuperHeroViewHolder -> holder.bind(items[position])
+            is SuperHeroViewHolder -> holder.bind(itemsList[position])
         }
     }
 
     override fun getItemCount(): Int {
-        return items.size
+        return itemsList.size
     }
 
     fun submitSuperHeroList(superHeroList: List<SuperHeroEntity>) {
-        val oldSuperHeroList = items
-        val diffResult:DiffUtil.DiffResult = DiffUtil.calculateDiff(SuperHeroItemDiffCallBack(oldSuperHeroList,superHeroList))
-        items = superHeroList
+        val oldSuperHeroList = itemsList
+        val diffResult: DiffUtil.DiffResult =
+            DiffUtil.calculateDiff(SuperHeroItemDiffCallBack(oldSuperHeroList, superHeroList))
+        itemsList.addAll(superHeroList)
         diffResult.dispatchUpdatesTo(this)
+        itemsListFull = ArrayList<SuperHeroEntity>(superHeroList)
 
     }
 
-    internal inner class SuperHeroItemDiffCallBack(var newSuperHeroList: List<SuperHeroEntity>, var oldSuperHeroList: List<SuperHeroEntity>) : DiffUtil.Callback(){
+    internal inner class SuperHeroItemDiffCallBack(
+        var newSuperHeroList: List<SuperHeroEntity>,
+        var oldSuperHeroList: List<SuperHeroEntity>
+    ) : DiffUtil.Callback() {
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
             return (oldSuperHeroList[oldItemPosition].id == newSuperHeroList[newItemPosition].id)
         }
 
         override fun getOldListSize(): Int {
-           return oldSuperHeroList.size
+            return oldSuperHeroList.size
         }
 
         override fun getNewListSize(): Int {
-           return newSuperHeroList.size
+            return newSuperHeroList.size
         }
 
         override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            return oldSuperHeroList[oldItemPosition].equals(newSuperHeroList[newItemPosition])
+            return oldSuperHeroList[oldItemPosition] == newSuperHeroList[newItemPosition]
         }
 
     }
@@ -97,12 +105,45 @@ class FavoritesAdapter(onSuperHeroClickListener: OnSuperHeroClickListener) :
         }
 
         override fun onClick(view: View?) {
-            onSuperHeroClickListener.onItemClick(items[adapterPosition].id, view)
+            onSuperHeroClickListener.onItemClick(itemsList[adapterPosition].id, view)
         }
     }
 
     interface OnSuperHeroClickListener {
         fun onItemClick(position: String, view: View?)
+    }
+
+    override fun getFilter(): Filter {
+        return favoritesFilter
+    }
+
+    private val favoritesFilter: Filter = object : Filter() {
+        override fun performFiltering(constraint: CharSequence): FilterResults {
+            var filteredList: ArrayList<SuperHeroEntity> = ArrayList()
+            if (constraint.isNullOrEmpty()) {
+                filteredList.addAll(itemsListFull)
+            } else {
+                var filterPattern = constraint.toString().toLowerCase().trim()
+                for (superHeroEntity in itemsListFull) {
+                    if (superHeroEntity.name.toLowerCase().contains(filterPattern) ||
+                        superHeroEntity.biography.publisher.toLowerCase().contains(filterPattern) ||
+                        superHeroEntity.biography.firstAppearance.toLowerCase().contains(
+                            filterPattern
+                        )
+                    )
+                        filteredList.add(superHeroEntity)
+                }
+            }
+            var filterResults = FilterResults()
+            filterResults.values = filteredList
+            return filterResults
+        }
+
+        override fun publishResults(constraint: CharSequence, results: FilterResults) {
+            itemsList.clear()
+            itemsList.addAll(results.values as Collection<SuperHeroEntity>)
+            notifyDataSetChanged()
+        }
     }
 
 }
