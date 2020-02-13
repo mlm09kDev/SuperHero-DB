@@ -3,6 +3,7 @@ package com.mlm09kdev.superHeroDB.ui.superhero.search
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.*
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
@@ -30,13 +31,16 @@ class SearchFragment : ScopedFragment(), KodeinAware, OnItemClickListener {
 
     //get the closest kodein from our superHeroApplication.kt
     override val kodein by closestKodein()
-    private val viewModelFactory: SearchViewModelFactory by instance()
 
+    private val viewModelFactory: SearchViewModelFactory by instance()
     private lateinit var viewModel: SearchViewModel
     private lateinit var callBackInterface: CallBackInterface
+    private var listState: Parcelable? = null
 
-    //TODO fix crashing from this lateinit not being initialized when navigating too fast
-    private lateinit var searchString: String
+    companion object {
+        private var searchString: String =""
+        private var mBundleRecyclerViewState: Bundle? = Bundle()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,17 +66,17 @@ class SearchFragment : ScopedFragment(), KodeinAware, OnItemClickListener {
             throw RuntimeException("$context must implement CallBackInterface")
     }
 
-    override fun onSaveInstanceState(savedInstanceState: Bundle) {
-        super.onSaveInstanceState(savedInstanceState)
-        savedInstanceState.putString("SearchString", searchString)
+    override fun onPause() {
+        super.onPause()
+        saveState()
 
     }
 
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-        searchString = savedInstanceState?.getString("SearchString").toString()
-    }
 
+    override fun onResume() {
+        super.onResume()
+        loadState()
+    }
 
     private fun bindUI() = launch(Dispatchers.Main) {
         val superHero = viewModel.getSuperHeroListAsync(searchString).await()
@@ -81,6 +85,9 @@ class SearchFragment : ScopedFragment(), KodeinAware, OnItemClickListener {
                 return@Observer
             group_search_loading.visibility = View.GONE
             initRecyclerView(it.toSearchItem())
+            loadState()
+            if(listState != null)
+                recyclerView_search_results.layoutManager?.onRestoreInstanceState(listState)
         })
     }
 
@@ -148,6 +155,16 @@ class SearchFragment : ScopedFragment(), KodeinAware, OnItemClickListener {
         launch(Dispatchers.IO) {
             viewModel.updateFavorites(superHeroEntity)
         }
+        saveState()
     }
 
+    private fun saveState(){
+      listState = recyclerView_search_results.layoutManager?.onSaveInstanceState()
+        mBundleRecyclerViewState!!.putParcelable("listState", listState)
+    }
+    private fun loadState(){
+        if (mBundleRecyclerViewState != null) {
+            listState = mBundleRecyclerViewState!!.getParcelable("listState")
+        }
+    }
 }

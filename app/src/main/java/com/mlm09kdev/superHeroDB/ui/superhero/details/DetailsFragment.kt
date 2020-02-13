@@ -32,9 +32,7 @@ class DetailsFragment : ScopedFragment(), KodeinAware {
     override val kodein by closestKodein()
 
     private val viewModelFactoryInstanceFactory: ((String) -> DetailsViewModelFactory) by factory()
-
     private lateinit var viewModel: DetailsViewModel
-
     private lateinit var callBackInterface: CallBackInterface
 
     override fun onCreateView(
