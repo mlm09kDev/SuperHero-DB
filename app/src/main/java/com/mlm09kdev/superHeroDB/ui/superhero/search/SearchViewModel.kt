@@ -1,23 +1,26 @@
 package com.mlm09kdev.superHeroDB.ui.superhero.search
 
-import android.util.Log
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.mlm09kdev.superHeroDB.model.database.entity.SuperHeroEntity
 import com.mlm09kdev.superHeroDB.model.repository.SuperHeroRepository
-import com.mlm09kdev.superHeroDB.utils.lazyDeferred
-import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class SearchViewModel(private val superHeroRepository: SuperHeroRepository) : ViewModel() {
 
-    fun getSuperHeroListAsync(queryString: String): Deferred<LiveData<List<SuperHeroEntity>>> {
-        Log.i("SearchView", "SearchViewModel")
-        val superHero by lazyDeferred {
-            superHeroRepository.getSuperHero(queryString)
+    val searchList = MutableLiveData<List<SuperHeroEntity>>()
+
+    fun fetchSuperHeroList(queryString: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            searchList.postValue(superHeroRepository.getSuperHero(queryString))
         }
-        return superHero
     }
-    suspend fun updateFavorites(superHeroEntity: SuperHeroEntity){
-        superHeroRepository.updateFavorite(superHeroEntity)
+
+    fun updateFavorites(superHeroEntity: SuperHeroEntity) {
+        viewModelScope.launch(Dispatchers.IO) {
+            superHeroRepository.updateFavorite(superHeroEntity)
+        }
     }
 }

@@ -7,6 +7,7 @@ import android.os.Parcelable
 import android.view.*
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -27,7 +28,7 @@ import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 
 
-class SearchFragment : ScopedFragment(), KodeinAware, OnItemClickListener {
+class SearchFragment : Fragment(), KodeinAware, OnItemClickListener {
 
     //get the closest kodein from our superHeroApplication.kt
     override val kodein by closestKodein()
@@ -35,10 +36,11 @@ class SearchFragment : ScopedFragment(), KodeinAware, OnItemClickListener {
     private val viewModelFactory: SearchViewModelFactory by instance()
     private lateinit var viewModel: SearchViewModel
     private lateinit var callBackInterface: CallBackInterface
-    private var listState: Parcelable? = null
+    private var listViewState: Parcelable? = null
+    private val SAVE_STATE_STRING = "listState"
 
     companion object {
-        private var searchString: String =""
+        private var searchString: String = ""
         private var mBundleRecyclerViewState: Bundle? = Bundle()
     }
 
@@ -55,12 +57,13 @@ class SearchFragment : ScopedFragment(), KodeinAware, OnItemClickListener {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory).get(SearchViewModel::class.java)
         (activity as? AppCompatActivity)?.supportActionBar?.title = "Search Super Hero Database"
+        viewModel.fetchSuperHeroList(searchString)
         bindUI()
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if(context is CallBackInterface)
+        if (context is CallBackInterface)
             callBackInterface = context
         else
             throw RuntimeException("$context must implement CallBackInterface")
@@ -77,16 +80,15 @@ class SearchFragment : ScopedFragment(), KodeinAware, OnItemClickListener {
         loadState()
     }
 
-    private fun bindUI() = launch(Dispatchers.Main) {
-        val superHero = viewModel.getSuperHeroListAsync(searchString).await()
-        superHero.observe(viewLifecycleOwner, Observer {
+    private fun bindUI() {
+        viewModel.searchList.observe(this@SearchFragment, Observer {
             if (it == null)
                 return@Observer
             group_search_loading.visibility = View.GONE
             initRecyclerView(it.toSearchItem())
             loadState()
-            if(listState != null)
-                recyclerView_search_results.layoutManager?.onRestoreInstanceState(listState)
+            if (listViewState != null)
+                recyclerView_search_results.layoutManager?.onRestoreInstanceState(listViewState)
         })
     }
 
@@ -130,16 +132,17 @@ class SearchFragment : ScopedFragment(), KodeinAware, OnItemClickListener {
         inflater.inflate(R.menu.search, menu)
         val item = menu.findItem(R.id.search)
         val searchView = item.actionView as SearchView
-        //searchView.isIconified = false
+        searchView.isIconified = false
+        searchView.clearFocus()
         searchView.queryHint = "Super Hero Name"
-        searchView.isIconifiedByDefault = false
+        // searchView.isIconifiedByDefault = false
         searchView.maxWidth = Integer.MAX_VALUE
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 //Use '%' to symbolized wildcard' in the search
                 searchString = "%$query%"
-                bindUI()
+                viewModel.fetchSuperHeroList(searchString)
                 return false
             }
 
@@ -151,19 +154,18 @@ class SearchFragment : ScopedFragment(), KodeinAware, OnItemClickListener {
     }
 
     override fun onItemClick(superHeroEntity: SuperHeroEntity) {
-        launch(Dispatchers.IO) {
-            viewModel.updateFavorites(superHeroEntity)
-        }
+        viewModel.updateFavorites(superHeroEntity)
         saveState()
     }
 
-    private fun saveState(){
-      listState = recyclerView_search_results.layoutManager?.onSaveInstanceState()
-        mBundleRecyclerViewState!!.putParcelable("listState", listState)
+    private fun saveState() {
+        listViewState = recyclerView_search_results.layoutManager?.onSaveInstanceState()
+        mBundleRecyclerViewState!!.putParcelable(SAVE_STATE_STRING, listViewState)
     }
-    private fun loadState(){
+
+    private fun loadState() {
         if (mBundleRecyclerViewState != null) {
-            listState = mBundleRecyclerViewState!!.getParcelable("listState")
+            listViewState = mBundleRecyclerViewState!!.getParcelable(SAVE_STATE_STRING)
         }
     }
 }

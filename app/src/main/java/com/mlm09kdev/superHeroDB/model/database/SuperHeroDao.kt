@@ -13,9 +13,8 @@ interface SuperHeroDao {
     @Query("select * from superHero order by id ASC")
     fun getAllSuperHero(): LiveData<List<SuperHeroEntity>>
 
-    //todo find way to change id to int instead of string
     @Query("select * from superHero where name like :name order by id ASC")
-    fun getSuperHero(name: String): LiveData<List<SuperHeroEntity>>
+    fun getSuperHero(name: String): List<SuperHeroEntity>
 
     @Query("select * from superHero where id = :id")
     fun getSuperHeroById(id: String): LiveData<SuperHeroEntity>

@@ -27,7 +27,7 @@ class SuperHeroRepositoryImpl(
         }
     }
 
-    override suspend fun getSuperHero(name: String): LiveData<List<SuperHeroEntity>> {
+    override suspend fun getSuperHero(name: String): List<SuperHeroEntity> {
         return withContext(Dispatchers.IO) {
             initSuperHeroData(name)
             return@withContext superHeroDao.getSuperHero(name)
