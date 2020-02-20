@@ -57,6 +57,6 @@
         android:id="@+id/recyclerView_favorites"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_superhero_list"/>
+        tools:listitem="@layout/favorite_item_superhero_card"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,18 +5,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mlm09kdev.superHeroDB.R
 import com.mlm09kdev.superHeroDB.model.database.entity.SuperHeroEntity
 import com.mlm09kdev.superHeroDB.utils.glide.GlideApp
-import kotlinx.android.synthetic.main.item_superhero_list.view.*
+import kotlinx.android.synthetic.main.favorite_item_superhero_card.view.*
 
 
 class FavoritesAdapter(onSuperHeroClickListener: OnSuperHeroClickListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>(), Filterable {
 
-    private var itemsList: MutableList<SuperHeroEntity> = ArrayList()
+    var itemsList: MutableList<SuperHeroEntity> = ArrayList()
     private var itemsListFull: List<SuperHeroEntity> = ArrayList()
     private var onSuperHeroClickListener: OnSuperHeroClickListener
 
@@ -27,7 +28,7 @@ class FavoritesAdapter(onSuperHeroClickListener: OnSuperHeroClickListener) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return SuperHeroViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.item_superhero_list,
+                R.layout.favorite_item_superhero_card,
                 parent,
                 false
             ), onSuperHeroClickListener
@@ -42,6 +43,18 @@ class FavoritesAdapter(onSuperHeroClickListener: OnSuperHeroClickListener) :
 
     override fun getItemCount(): Int {
         return itemsList.size
+    }
+
+    fun removeSuperhero(position: Int) {
+        onSuperHeroClickListener.updateSuperHero(itemsList[position], 0)
+        itemsList.removeAt(position)
+        notifyItemRemoved(position)
+    }
+
+    fun restoreSuperhero(superHeroEntity: SuperHeroEntity, position: Int) {
+        onSuperHeroClickListener.updateSuperHero(superHeroEntity, 1)
+        itemsList.add(position, superHeroEntity)
+        notifyItemInserted(position)
     }
 
     fun submitSuperHeroList(superHeroList: List<SuperHeroEntity>) {
@@ -88,6 +101,7 @@ class FavoritesAdapter(onSuperHeroClickListener: OnSuperHeroClickListener) :
             this.onSuperHeroClickListener = onSuperHeroClickListener
         }
 
+        var viewForeground: ConstraintLayout = itemView.view_foreground
         private val favoritesName = itemView.textView_favorites_name
         private val favoritesPublisher = itemView.textView_favorites_publisher
         private val favoritesImage = itemView.imageView_favorites_image
@@ -111,6 +125,7 @@ class FavoritesAdapter(onSuperHeroClickListener: OnSuperHeroClickListener) :
 
     interface OnSuperHeroClickListener {
         fun onItemClick(position: String, view: View?)
+        fun updateSuperHero(superHeroEntity: SuperHeroEntity, favorite: Int)
     }
 
     override fun getFilter(): Filter {

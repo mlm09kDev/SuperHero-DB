@@ -1,6 +1,7 @@
 package com.mlm09kdev.superHeroDB.ui.superhero.favorites
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
@@ -11,11 +12,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.mlm09kdev.superHeroDB.R
 import com.mlm09kdev.superHeroDB.model.database.entity.SuperHeroEntity
 import com.mlm09kdev.superHeroDB.ui.ScopedFragment
 import com.mlm09kdev.superHeroDB.ui.adapters.FavoritesAdapter
+import com.mlm09kdev.superHeroDB.ui.adapters.SwipeToDeleteCallback
 import com.mlm09kdev.superHeroDB.utils.CallBackInterface
 import com.mlm09kdev.superHeroDB.utils.ItemDecorator
 import kotlinx.android.synthetic.main.favorites_fragment_layout.*
@@ -26,7 +31,8 @@ import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 
 
-class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSuperHeroClickListener {
+class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSuperHeroClickListener,
+    SwipeToDeleteCallback.RecyclerItemTouchHelperListener {
 
     override val kodein by closestKodein()
     private val viewModelFactory: FavoritesViewModelFactory by instance()
@@ -55,6 +61,9 @@ class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSupe
         viewModel = ViewModelProvider(this, viewModelFactory).get(FavoritesViewModel::class.java)
         (activity as? AppCompatActivity)?.supportActionBar?.title = "Search Super Hero Database"
         bindUI()
+        recyclerView_favorites.addItemDecoration(
+            ItemDecorator(resources.getDimension(R.dimen.list_view_margin).toInt())
+        )
     }
 
     override fun onAttach(context: Context) {
@@ -93,9 +102,6 @@ class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSupe
 
 
     private fun initRecyclerView() {
-        recyclerView_favorites.addItemDecoration(
-            ItemDecorator(resources.getDimension(R.dimen.list_view_margin).toInt())
-        )
         recyclerView_favorites.apply {
             layoutManager = LinearLayoutManager(this@FavoritesFragment.context)
 
@@ -109,6 +115,10 @@ class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSupe
             favoritesAdapter = FavoritesAdapter(this@FavoritesFragment)
             adapter = favoritesAdapter
         }
+
+        val itemTouchHelper =
+            ItemTouchHelper(SwipeToDeleteCallback(this@FavoritesFragment))
+        itemTouchHelper.attachToRecyclerView(recyclerView_favorites)
     }
 
     private fun addDataToRecyclerView(superHeroList: List<SuperHeroEntity>) {
@@ -120,6 +130,9 @@ class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSupe
         showSuperHeroDetails(position, view!!)
     }
 
+    override fun updateSuperHero(superHeroEntity: SuperHeroEntity, favorite: Int) {
+        viewModel.updateFavorites(superHeroEntity, favorite)
+    }
 
     private fun showSuperHeroDetails(id: String, view: View) {
         val actionDetail =
@@ -134,7 +147,7 @@ class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSupe
         val searchView = item.actionView as SearchView
         //searchView.isIconified = false
         searchView.queryHint = "Super Hero Name"
-       // searchView.isIconifiedByDefault = false
+        // searchView.isIconifiedByDefault = false
         searchView.maxWidth = Integer.MAX_VALUE
 
         searchView.imeOptions = EditorInfo.IME_ACTION_DONE
@@ -149,5 +162,30 @@ class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSupe
                 return true
             }
         })
+    }
+
+    override fun onSwiped(viewHolder: RecyclerView.ViewHolder?, direction: Int, position: Int) {
+        if (viewHolder is FavoritesAdapter.SuperHeroViewHolder) {
+            // get the removed item name to display it in snack bar
+            val name: String = favoritesAdapter.itemsList[viewHolder!!.adapterPosition].name
+            // backup of removed item for undo purpose
+            val deletedSuperHeroEntity: SuperHeroEntity =
+                favoritesAdapter.itemsList[viewHolder.adapterPosition]
+            val deletedPosition = viewHolder.adapterPosition
+            // remove the superHero from recycler view
+            favoritesAdapter.removeSuperhero(position)
+            // showing snack bar with Undo option
+            val snackbar = Snackbar.make(
+                recyclerView_favorites,
+                "$name removed from Favorites",
+                Snackbar.LENGTH_LONG
+            )
+            snackbar.setAction("Undo") {
+                // undo is selected, restore the deleted superHero
+                favoritesAdapter.restoreSuperhero(deletedSuperHeroEntity, deletedPosition)
+            }
+            snackbar.setActionTextColor(Color.YELLOW)
+            snackbar.show()
+        }
     }
 }
