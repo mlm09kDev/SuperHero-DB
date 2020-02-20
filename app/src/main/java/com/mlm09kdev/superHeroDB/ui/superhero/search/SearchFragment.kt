@@ -81,7 +81,7 @@ class SearchFragment : Fragment(), KodeinAware, OnItemClickListener {
     }
 
     private fun bindUI() {
-        viewModel.searchList.observe(this@SearchFragment, Observer {
+        viewModel.searchList.observe(viewLifecycleOwner, Observer {
             if (it == null)
                 return@Observer
             group_search_loading.visibility = View.GONE
