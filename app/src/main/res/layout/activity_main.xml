@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:theme="@style/ToolbarTheme"
+            app:layout_behavior="com.mlm09kdev.superHeroDB.utils.ToolbarHideBehavior"
             app:layout_scrollFlags="scroll|enterAlways" />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -26,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:defaultNavHost="true"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         app:navGraph="@navigation/nav_graph" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -38,7 +39,7 @@
         app:itemTextColor="@color/navigation_color"
         android:background="@color/toolbar_background"
         android:layout_gravity="bottom"
-        app:layout_behavior="com.mlm09kdev.superHeroDB.utils.BottomNavigationHideBehavior"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
         app:menu="@menu/bottom_nav" />
     <!--app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior" -->
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
