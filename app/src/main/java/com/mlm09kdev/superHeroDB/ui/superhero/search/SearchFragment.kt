@@ -37,11 +37,11 @@ class SearchFragment : Fragment(), KodeinAware, OnItemClickListener {
     private lateinit var viewModel: SearchViewModel
     private lateinit var callBackInterface: CallBackInterface
     private var listViewState: Parcelable? = null
-    private val SAVE_STATE_STRING = "listState"
 
     companion object {
         private var searchString: String = ""
         private var mBundleRecyclerViewState: Bundle? = Bundle()
+        private const val SAVE_STATE_STRING = "listState"
     }
 
     override fun onCreateView(
@@ -160,12 +160,12 @@ class SearchFragment : Fragment(), KodeinAware, OnItemClickListener {
 
     private fun saveState() {
         listViewState = recyclerView_search_results.layoutManager?.onSaveInstanceState()
-        mBundleRecyclerViewState!!.putParcelable(SAVE_STATE_STRING, listViewState)
+        mBundleRecyclerViewState!!.putParcelable(Companion.SAVE_STATE_STRING, listViewState)
     }
 
     private fun loadState() {
         if (mBundleRecyclerViewState != null) {
-            listViewState = mBundleRecyclerViewState!!.getParcelable(SAVE_STATE_STRING)
+            listViewState = mBundleRecyclerViewState!!.getParcelable(Companion.SAVE_STATE_STRING)
         }
     }
 }

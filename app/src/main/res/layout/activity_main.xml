@@ -39,7 +39,7 @@
         app:itemTextColor="@color/navigation_color"
         android:background="@color/toolbar_background"
         android:layout_gravity="bottom"
-        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
+        app:layout_behavior="com.mlm09kdev.superHeroDB.utils.BottomNavigationHideBehavior"
         app:menu="@menu/bottom_nav" />
     <!--app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior" -->
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

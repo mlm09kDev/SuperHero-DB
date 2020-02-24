@@ -6,6 +6,7 @@ import com.mlm09kdev.superHeroDB.model.database.SuperHeroDatabase
 import com.mlm09kdev.superHeroDB.model.network.*
 import com.mlm09kdev.superHeroDB.model.repository.SuperHeroRepository
 import com.mlm09kdev.superHeroDB.model.repository.SuperHeroRepositoryImpl
+import com.mlm09kdev.superHeroDB.ui.superhero.create.CreateViewModelFactory
 import com.mlm09kdev.superHeroDB.ui.superhero.details.DetailsViewModelFactory
 import com.mlm09kdev.superHeroDB.ui.superhero.search.SearchViewModelFactory
 import com.mlm09kdev.superHeroDB.ui.superhero.favorites.FavoritesViewModelFactory
@@ -23,14 +24,20 @@ class SuperHeroApplication : Application(), KodeinAware {
         import(androidXModule(this@SuperHeroApplication))
 
         bind() from singleton { SuperHeroDatabase(instance()) }
-        bind() from singleton { instance<SuperHeroDatabase>().superHeroDao()}
-        bind<ConnectionInterceptor>()with singleton { ConnectionInterceptorImpl(instance()) }
+        bind() from singleton { instance<SuperHeroDatabase>().superHeroDao() }
+        bind<ConnectionInterceptor>() with singleton { ConnectionInterceptorImpl(instance()) }
         bind() from singleton { SuperHeroAPIService(instance()) }
-        bind<NetworkDataSource>()with singleton { NetworkDataSourceImpl(instance()) }
-        bind<SuperHeroRepository>()with singleton { SuperHeroRepositoryImpl(instance(),instance()) }
+        bind<NetworkDataSource>() with singleton { NetworkDataSourceImpl(instance()) }
+        bind<SuperHeroRepository>() with singleton {
+            SuperHeroRepositoryImpl(
+                instance(),
+                instance()
+            )
+        }
         bind() from provider { SearchViewModelFactory(instance()) }
         bind() from provider { FavoritesViewModelFactory(instance()) }
-        bind() from factory{id: String -> DetailsViewModelFactory(instance(),id)}
+        bind() from factory { id: String -> DetailsViewModelFactory(instance(), id) }
+        bind() from provider { CreateViewModelFactory(instance()) }
 
     }
 

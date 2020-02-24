@@ -4,13 +4,13 @@
     <item
         android:id="@+id/searchFragment"
         android:icon="@drawable/ic_search_dark"
-        android:title="@string/today"/>
+        android:title="@string/search"/>
     <item
         android:id="@+id/favoriteListFragment"
         android:icon="@drawable/ic_favorite"
-        android:title="@string/seven_days"/>
+        android:title="@string/favorites"/>
     <item
-        android:id="@+id/settingsFragment"
-        android:icon="@drawable/ic_settings_black_24dp"
-        android:title="@string/setting"/>
+        android:id="@+id/createFragment"
+        android:icon="@drawable/ic_create"
+        android:title="@string/create"/>
 </menu>
