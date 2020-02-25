@@ -124,7 +124,7 @@ class FavoritesAdapter(onSuperHeroClickListener: OnSuperHeroClickListener) :
     }
 
     interface OnSuperHeroClickListener {
-        fun onItemClick(position: String, view: View?)
+        fun onItemClick(position: Int, view: View?)
         fun updateSuperHero(superHeroEntity: SuperHeroEntity, favorite: Int)
     }
 

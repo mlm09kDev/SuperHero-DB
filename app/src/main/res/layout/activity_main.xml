@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinator_main_layout"
     android:layout_width="match_parent"
+    android:background="@color/primary_light"
     android:layout_height="match_parent"
     tools:context="ui.MainActivity">
 

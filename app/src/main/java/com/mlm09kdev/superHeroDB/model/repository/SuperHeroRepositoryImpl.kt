@@ -34,7 +34,7 @@ class SuperHeroRepositoryImpl(
         }
     }
 
-    override suspend fun getSuperHeroById(id: String): LiveData<SuperHeroEntity> {
+    override suspend fun getSuperHeroById(id: Int): LiveData<SuperHeroEntity> {
         return withContext(Dispatchers.IO) {
             return@withContext superHeroDao.getSuperHeroById(id)
         }
@@ -48,6 +48,9 @@ class SuperHeroRepositoryImpl(
 
     override suspend fun updateFavorite(superHeroEntity:SuperHeroEntity) {
         superHeroDao.update(superHeroEntity)
+    }
+    override suspend fun createSuperHero(superHeroEntity:SuperHeroEntity) {
+        insertOrUpdate(superHeroEntity)
     }
 
     private fun persistFetchedSuperHero(fetchedSuperHero: SuperHeroEntity) {

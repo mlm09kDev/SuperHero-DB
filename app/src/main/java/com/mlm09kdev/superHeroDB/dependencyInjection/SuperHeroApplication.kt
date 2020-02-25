@@ -36,7 +36,7 @@ class SuperHeroApplication : Application(), KodeinAware {
         }
         bind() from provider { SearchViewModelFactory(instance()) }
         bind() from provider { FavoritesViewModelFactory(instance()) }
-        bind() from factory { id: String -> DetailsViewModelFactory(instance(), id) }
+        bind() from factory { id: Int -> DetailsViewModelFactory(instance(), id) }
         bind() from provider { CreateViewModelFactory(instance()) }
 
     }

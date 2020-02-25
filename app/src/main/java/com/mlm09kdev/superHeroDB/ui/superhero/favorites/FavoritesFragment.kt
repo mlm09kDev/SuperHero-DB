@@ -125,7 +125,7 @@ class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSupe
         favoritesAdapter.submitSuperHeroList(superHeroList)
     }
 
-    override fun onItemClick(position: String, view: View?) {
+    override fun onItemClick(position: Int, view: View?) {
         Log.i("favoritesFragment", "item:$position was clicked")
         showSuperHeroDetails(position, view!!)
     }
@@ -134,7 +134,7 @@ class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSupe
         viewModel.updateFavorites(superHeroEntity, favorite)
     }
 
-    private fun showSuperHeroDetails(id: String, view: View) {
+    private fun showSuperHeroDetails(id: Int, view: View) {
         val actionDetail =
             FavoritesFragmentDirections.actionFavoriteListFragmentToDetailsFragment(id)
         Navigation.findNavController(view).navigate(actionDetail)

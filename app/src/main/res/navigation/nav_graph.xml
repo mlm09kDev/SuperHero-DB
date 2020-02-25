@@ -12,7 +12,7 @@
         tools:layout="@layout/details_fragment_layout" >
         <argument
             android:name="id"
-            app:argType="string" />
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/favoriteListFragment"

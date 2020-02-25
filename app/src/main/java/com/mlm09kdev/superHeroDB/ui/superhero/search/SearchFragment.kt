@@ -15,14 +15,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mlm09kdev.superHeroDB.R
 import com.mlm09kdev.superHeroDB.model.database.entity.SuperHeroEntity
-import com.mlm09kdev.superHeroDB.ui.ScopedFragment
 import com.mlm09kdev.superHeroDB.ui.superhero.search.SearchItem.OnItemClickListener
 import com.mlm09kdev.superHeroDB.utils.CallBackInterface
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.search_superhero_layout.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
@@ -118,7 +115,7 @@ class SearchFragment : Fragment(), KodeinAware, OnItemClickListener {
         }
     }
 
-    private fun showSuperHeroDetails(id: String, view: View) {
+    private fun showSuperHeroDetails(id: Int, view: View) {
 
         val actionDetail = SearchFragmentDirections.actionSearchFragmentToDetailsFragment(id)
         Navigation.findNavController(view).navigate(actionDetail)
@@ -160,12 +157,12 @@ class SearchFragment : Fragment(), KodeinAware, OnItemClickListener {
 
     private fun saveState() {
         listViewState = recyclerView_search_results.layoutManager?.onSaveInstanceState()
-        mBundleRecyclerViewState!!.putParcelable(Companion.SAVE_STATE_STRING, listViewState)
+        mBundleRecyclerViewState!!.putParcelable(SAVE_STATE_STRING, listViewState)
     }
 
     private fun loadState() {
         if (mBundleRecyclerViewState != null) {
-            listViewState = mBundleRecyclerViewState!!.getParcelable(Companion.SAVE_STATE_STRING)
+            listViewState = mBundleRecyclerViewState!!.getParcelable(SAVE_STATE_STRING)
         }
     }
 }

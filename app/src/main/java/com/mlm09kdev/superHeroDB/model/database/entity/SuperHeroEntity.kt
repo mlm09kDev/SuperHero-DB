@@ -1,15 +1,12 @@
 package com.mlm09kdev.superHeroDB.model.database.entity
 
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.Index
-import androidx.room.PrimaryKey
+import androidx.room.*
 
 @Entity(tableName = "superHero", indices = [Index(value = ["id"], unique = true)])
 data class SuperHeroEntity(
 
-    @PrimaryKey(autoGenerate = false)
-    val id: String,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int,
     val name: String,
     @Embedded(prefix = "powerstats_")
     val powerstats: Powerstats,

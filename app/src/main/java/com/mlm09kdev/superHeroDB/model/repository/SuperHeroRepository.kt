@@ -8,7 +8,8 @@ import com.mlm09kdev.superHeroDB.model.database.entity.SuperHeroEntity
  */
 interface SuperHeroRepository {
     suspend fun getSuperHero(name: String): List<SuperHeroEntity>
-    suspend fun getSuperHeroById(id: String): LiveData<SuperHeroEntity>
+    suspend fun getSuperHeroById(id: Int): LiveData<SuperHeroEntity>
     suspend fun getFavoriteSuperHeroes(): LiveData<List<SuperHeroEntity>>
     suspend fun updateFavorite(superHeroEntity: SuperHeroEntity)
+    suspend fun createSuperHero(superHeroEntity:SuperHeroEntity)
 }

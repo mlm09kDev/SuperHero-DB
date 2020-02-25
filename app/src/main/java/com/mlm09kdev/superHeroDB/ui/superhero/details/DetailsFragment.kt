@@ -31,7 +31,7 @@ class DetailsFragment : ScopedFragment(), KodeinAware {
 
     override val kodein by closestKodein()
 
-    private val viewModelFactoryInstanceFactory: ((String) -> DetailsViewModelFactory) by factory()
+    private val viewModelFactoryInstanceFactory: ((Int) -> DetailsViewModelFactory) by factory()
     private lateinit var viewModel: DetailsViewModel
     private lateinit var callBackInterface: CallBackInterface
 
@@ -63,7 +63,7 @@ class DetailsFragment : ScopedFragment(), KodeinAware {
                 return@Observer
 
             group_details_loading.visibility = View.GONE
-            (activity as? AppCompatActivity)?.supportActionBar?.title = it.name
+            (activity as? AppCompatActivity)?.supportActionBar?.title = it.id.toString()
             bindPowerStats(it.powerstats)
             bindBiography(it.biography)
             bindAppearance(it.appearance)
