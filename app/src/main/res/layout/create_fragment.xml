@@ -1,13 +1,665 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.mlm09kdev.superHeroDB.ui.superhero.create.CreateFragment">
+    tools:context=".ui.superhero.create.CreateFragment">
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="5sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/primary_light"
+                android:orientation="vertical"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:id="@+id/textView_mainInfo_header"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Super Hero Info"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView_mainInfo_name_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Name:"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintStart_toStartOf="@+id/textView_mainInfo_header"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_mainInfo_header" />
+
+                <EditText
+                    android:id="@+id/editText_mainInfo_name_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_mainInfo_name_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView_mainInfo_name_header"
+                    app:layout_constraintTop_toTopOf="@+id/textView_mainInfo_name_header"
+                    tools:text="batman" />
+
+                <TextView
+                    android:id="@+id/textView_mainInfo_imageURL_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Image URL:"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintStart_toStartOf="@+id/textView_mainInfo_name_header"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_mainInfo_name_header" />
+
+                <EditText
+                    android:id="@+id/editText_mainInfo_imageURL_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_mainInfo_imageURL_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView_mainInfo_imageURL_header"
+                    app:layout_constraintTop_toTopOf="@+id/textView_mainInfo_imageURL_header"
+                    tools:text="https://google.com " />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:cardElevation="5sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView4">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/primary_light"
+                android:orientation="vertical"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:id="@+id/textView_biography_header"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Biography"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView_biography_fullName_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Full Name:"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintStart_toStartOf="@+id/textView_biography_header"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_biography_header" />
+
+                <EditText
+                    android:id="@+id/editText_biography_fullName_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/secondary_text"
+
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_biography_fullName_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView_biography_fullName_header"
+                    app:layout_constraintTop_toTopOf="@+id/textView_biography_fullName_header"
+                    tools:text="Batman" />
+
+                <TextView
+                    android:id="@+id/textView_biography_placeOfBirth_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Place Of Birth:"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintStart_toStartOf="@+id/textView_biography_fullName_header"
+                    app:layout_constraintTop_toBottomOf="@+id/editText_biography_fullName_text" />
+
+                <EditText
+                    android:id="@+id/editText_biography_placeOfBirth_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_biography_placeOfBirth_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView_biography_placeOfBirth_header"
+                    app:layout_constraintTop_toTopOf="@+id/textView_biography_placeOfBirth_header"
+                    tools:text="Gotham City" />
+
+                <TextView
+                    android:id="@+id/textView_biography_publisher_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Publisher:"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintStart_toStartOf="@+id/textView_biography_placeOfBirth_header"
+                    app:layout_constraintTop_toBottomOf="@+id/editText_biography_placeOfBirth_text" />
+
+                <EditText
+                    android:id="@+id/editText_biography_publisher_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_biography_publisher_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView_biography_publisher_header"
+                    app:layout_constraintTop_toTopOf="@+id/textView_biography_publisher_header"
+                    tools:text="DC Comics" />
+
+                <TextView
+                    android:id="@+id/textView_biography_firstAppearance_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="First Appearance:"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintStart_toStartOf="@+id/textView_biography_publisher_header"
+                    app:layout_constraintTop_toBottomOf="@+id/editText_biography_publisher_text" />
+
+                <EditText
+                    android:id="@+id/editText_biography_firstAppearance_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_biography_firstAppearance_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView_biography_firstAppearance_header"
+                    app:layout_constraintTop_toTopOf="@+id/textView_biography_firstAppearance_header"
+                    tools:text="Detective 1 " />
+
+                <TextView
+                    android:id="@+id/textView_biography_alterEgos_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Alter Egos:"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintStart_toStartOf="@+id/textView_biography_firstAppearance_header"
+                    app:layout_constraintTop_toBottomOf="@+id/editText_biography_firstAppearance_text" />
+
+                <EditText
+                    android:id="@+id/editText_biography_alterEgos_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_biography_alterEgos_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView_biography_alterEgos_header"
+                    app:layout_constraintTop_toTopOf="@+id/textView_biography_alterEgos_header"
+                    tools:text="Fast Man" />
+
+                <TextView
+                    android:id="@+id/textView_biography_alignment_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Alignment:"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintStart_toStartOf="@+id/textView_biography_alterEgos_header"
+                    app:layout_constraintTop_toBottomOf="@+id/editText_biography_alterEgos_text" />
+
+                <EditText
+                    android:id="@+id/editText_biography_alignment_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_biography_alignment_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView_biography_alignment_header"
+                    app:layout_constraintTop_toTopOf="@+id/textView_biography_alignment_header"
+                    tools:text="Good" />
+
+                <TextView
+                    android:id="@+id/textView_biography_aliases_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Aliases"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintStart_toStartOf="@+id/textView_biography_alignment_header"
+                    app:layout_constraintTop_toBottomOf="@+id/editText_biography_alignment_text" />
+
+                <EditText
+                    android:id="@+id/editText_biography_aliases_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_biography_aliases_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView_biography_aliases_header"
+                    app:layout_constraintTop_toTopOf="@+id/textView_biography_aliases_header"
+                    tools:text="Bruce  WayneWayne " />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:cardElevation="5sp"
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/primary_light"
+                android:orientation="vertical"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:id="@+id/textView_appearance_header"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Appearance"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView_appearance_gender_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Gender:"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintStart_toStartOf="@+id/textView_appearance_header"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_appearance_header" />
+
+                <EditText
+                    android:id="@+id/editText_appearance_gender_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_appearance_gender_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView_appearance_gender_header"
+                    app:layout_constraintTop_toTopOf="@+id/textView_appearance_gender_header"
+                    tools:text="Male" />
+
+
+                <TextView
+                    android:id="@+id/textView_appearance_race_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Race:"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintStart_toStartOf="@+id/textView_appearance_gender_header"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_appearance_gender_header" />
+
+                <EditText
+                    android:id="@+id/editText_appearance_race_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_appearance_race_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView_appearance_race_header"
+                    app:layout_constraintTop_toTopOf="@+id/textView_appearance_race_header"
+                    tools:text="Human" />
+
+                <TextView
+                    android:id="@+id/textView_appearance_eyeColor_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Eye Color:"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintStart_toStartOf="@+id/textView_appearance_race_header"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_appearance_race_header" />
+
+                <EditText
+                    android:id="@+id/editText_appearance_eyeColor_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_appearance_eyeColor_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView_appearance_eyeColor_header"
+                    app:layout_constraintTop_toTopOf="@+id/textView_appearance_eyeColor_header"
+                    tools:text="Blue" />
+
+                <TextView
+                    android:id="@+id/textView_appearance_hairColor_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Hair Color:"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintStart_toStartOf="@+id/textView_appearance_eyeColor_header"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_appearance_eyeColor_header" />
+
+                <EditText
+                    android:id="@+id/editText_appearance_hairColor_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_appearance_hairColor_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView_appearance_hairColor_header"
+                    app:layout_constraintTop_toTopOf="@+id/textView_appearance_hairColor_header"
+                    tools:text="Black" />
+
+                <TextView
+                    android:id="@+id/textView_appearance_height_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Height:"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintStart_toStartOf="@+id/textView_appearance_hairColor_header"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_appearance_hairColor_header" />
+
+                <EditText
+                    android:id="@+id/editText_appearance_height_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_appearance_height_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView_appearance_height_header"
+                    app:layout_constraintTop_toTopOf="@+id/textView_appearance_height_header"
+                    tools:text="6'2&quot;/188 cm" />
+
+                <TextView
+                    android:id="@+id/textView_appearance_weight_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Weight:"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintStart_toStartOf="@+id/textView_appearance_height_header"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_appearance_height_header" />
+
+                <EditText
+                    android:id="@+id/editText_appearance_weight_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_appearance_weight_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView_appearance_weight_header"
+                    app:layout_constraintTop_toTopOf="@+id/textView_appearance_weight_header"
+                    tools:text="210/95 lb/kg" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:cardElevation="5sp"
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView2">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/primary_light"
+                android:orientation="vertical"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:id="@+id/textView_work_header"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Work"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView_work_occupation_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Occupation:"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintStart_toStartOf="@+id/textView_work_header"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_work_header" />
+
+                <EditText
+                    android:id="@+id/editText_work_occupation_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_work_occupation_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView_work_occupation_header"
+                    app:layout_constraintTop_toTopOf="@+id/textView_work_occupation_header"
+                    tools:text=" " />
+
+
+                <TextView
+                    android:id="@+id/textView_work_base_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Base:"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintStart_toStartOf="@+id/textView_work_occupation_header"
+                    app:layout_constraintTop_toBottomOf="@+id/editText_work_occupation_text" />
+
+                <EditText
+                    android:id="@+id/editText_work_base_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_work_base_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView_work_base_header"
+                    app:layout_constraintTop_toTopOf="@+id/textView_work_base_header"
+                    tools:text="Bruc " />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:cardElevation="5sp"
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView3">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/primary_light"
+                android:orientation="vertical"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:id="@+id/textView_connections_header"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Connections"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView_connections_groups_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Group Affiliation:"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintStart_toStartOf="@+id/textView_connections_header"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_connections_header" />
+
+
+                <EditText
+                    android:id="@+id/editText_connections_groups_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:maxLines="1"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_connections_groups_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView_connections_groups_header"
+                    app:layout_constraintTop_toTopOf="@+id/textView_connections_groups_header"
+                    tools:text="groups" />
+
+                <TextView
+                    android:id="@+id/textView_connections_relatives_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Relatives:"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintStart_toStartOf="@+id/textView_connections_groups_header"
+                    app:layout_constraintTop_toBottomOf="@+id/editText_connections_groups_text" />
+
+                <EditText
+                    android:id="@+id/editText_connections_relatives_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:maxLines="1"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_connections_relatives_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView_connections_relatives_header"
+                    app:layout_constraintTop_toTopOf="@+id/textView_connections_relatives_header"
+                    tools:text="Dick grayson " />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
