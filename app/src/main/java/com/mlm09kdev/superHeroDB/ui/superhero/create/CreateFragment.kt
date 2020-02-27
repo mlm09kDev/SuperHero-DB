@@ -15,6 +15,7 @@ import com.mlm09kdev.superHeroDB.R
 import com.mlm09kdev.superHeroDB.model.database.entity.*
 import com.mlm09kdev.superHeroDB.ui.superhero.search.SearchFragmentDirections
 import com.mlm09kdev.superHeroDB.utils.CallBackInterface
+import com.mlm09kdev.superHeroDB.utils.InputFilterMinMax
 import kotlinx.android.synthetic.main.create_fragment.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
@@ -47,6 +48,7 @@ class CreateFragment : Fragment(), KodeinAware {
         val editor = prefs.edit()
         editor.putInt("LastId", id)
         editor.apply() //important, otherwise it wouldn't save.
+        bindPowerStatLimitFilter()
 
         button_add_to_favorites.setOnClickListener {
             viewModel.createNewSuperHero(createSuperHeroEntity(id))
@@ -62,6 +64,15 @@ class CreateFragment : Fragment(), KodeinAware {
             callBackInterface = context
         else
             throw RuntimeException("$context must implement CallBackInterface")
+    }
+
+    private fun bindPowerStatLimitFilter(){
+        editText_powerstat_combat_text.filters = arrayOf(InputFilterMinMax(0,100))
+        editText_powerstat_durability_text.filters = arrayOf(InputFilterMinMax(0,100))
+        editText_powerstat_power_text.filters = arrayOf(InputFilterMinMax(0,100))
+        editText_powerstat_intelligence_text.filters = arrayOf(InputFilterMinMax(0,100))
+        editText_powerstat_speed_text.filters = arrayOf(InputFilterMinMax(0,100))
+
     }
 
     private fun createSuperHeroEntity(id:Int): SuperHeroEntity{
