@@ -75,7 +75,7 @@
                     android:textColor="@color/primary_text"
                     android:textSize="@dimen/text_size_subHeader"
                     app:layout_constraintStart_toStartOf="@+id/textView_mainInfo_name_header"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_mainInfo_name_header" />
+                    app:layout_constraintTop_toBottomOf="@+id/editText_mainInfo_name_text" />
 
                 <EditText
                     android:id="@+id/editText_mainInfo_imageURL_text"
@@ -357,6 +357,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    app:layout_constraintHorizontal_bias="1.0"
                     android:textColor="@color/secondary_text"
                     android:textSize="@dimen/text_size_subHeader"
                     app:layout_constraintBottom_toBottomOf="@+id/textView_appearance_gender_header"
@@ -364,7 +365,6 @@
                     app:layout_constraintStart_toEndOf="@+id/textView_appearance_gender_header"
                     app:layout_constraintTop_toTopOf="@+id/textView_appearance_gender_header"
                     tools:text="Male" />
-
 
                 <TextView
                     android:id="@+id/textView_appearance_race_header"
@@ -375,7 +375,7 @@
                     android:textColor="@color/primary_text"
                     android:textSize="@dimen/text_size_subHeader"
                     app:layout_constraintStart_toStartOf="@+id/textView_appearance_gender_header"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_appearance_gender_header" />
+                    app:layout_constraintTop_toBottomOf="@+id/editText_appearance_gender_text" />
 
                 <EditText
                     android:id="@+id/editText_appearance_race_text"
@@ -386,6 +386,7 @@
                     android:textSize="@dimen/text_size_subHeader"
                     app:layout_constraintBottom_toBottomOf="@+id/textView_appearance_race_header"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/textView_appearance_race_header"
                     app:layout_constraintTop_toTopOf="@+id/textView_appearance_race_header"
                     tools:text="Human" />
@@ -399,7 +400,7 @@
                     android:textColor="@color/primary_text"
                     android:textSize="@dimen/text_size_subHeader"
                     app:layout_constraintStart_toStartOf="@+id/textView_appearance_race_header"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_appearance_race_header" />
+                    app:layout_constraintTop_toBottomOf="@+id/editText_appearance_race_text" />
 
                 <EditText
                     android:id="@+id/editText_appearance_eyeColor_text"
@@ -410,6 +411,7 @@
                     android:textSize="@dimen/text_size_subHeader"
                     app:layout_constraintBottom_toBottomOf="@+id/textView_appearance_eyeColor_header"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/textView_appearance_eyeColor_header"
                     app:layout_constraintTop_toTopOf="@+id/textView_appearance_eyeColor_header"
                     tools:text="Blue" />
@@ -423,7 +425,7 @@
                     android:textColor="@color/primary_text"
                     android:textSize="@dimen/text_size_subHeader"
                     app:layout_constraintStart_toStartOf="@+id/textView_appearance_eyeColor_header"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_appearance_eyeColor_header" />
+                    app:layout_constraintTop_toBottomOf="@+id/editText_appearance_eyeColor_text" />
 
                 <EditText
                     android:id="@+id/editText_appearance_hairColor_text"
@@ -434,6 +436,7 @@
                     android:textSize="@dimen/text_size_subHeader"
                     app:layout_constraintBottom_toBottomOf="@+id/textView_appearance_hairColor_header"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/textView_appearance_hairColor_header"
                     app:layout_constraintTop_toTopOf="@+id/textView_appearance_hairColor_header"
                     tools:text="Black" />
@@ -447,7 +450,7 @@
                     android:textColor="@color/primary_text"
                     android:textSize="@dimen/text_size_subHeader"
                     app:layout_constraintStart_toStartOf="@+id/textView_appearance_hairColor_header"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_appearance_hairColor_header" />
+                    app:layout_constraintTop_toBottomOf="@+id/editText_appearance_hairColor_text" />
 
                 <EditText
                     android:id="@+id/editText_appearance_height_text"
@@ -458,6 +461,7 @@
                     android:textSize="@dimen/text_size_subHeader"
                     app:layout_constraintBottom_toBottomOf="@+id/textView_appearance_height_header"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/textView_appearance_height_header"
                     app:layout_constraintTop_toTopOf="@+id/textView_appearance_height_header"
                     tools:text="6'2&quot;/188 cm" />
@@ -471,7 +475,7 @@
                     android:textColor="@color/primary_text"
                     android:textSize="@dimen/text_size_subHeader"
                     app:layout_constraintStart_toStartOf="@+id/textView_appearance_height_header"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_appearance_height_header" />
+                    app:layout_constraintTop_toBottomOf="@+id/editText_appearance_height_text" />
 
                 <EditText
                     android:id="@+id/editText_appearance_weight_text"
@@ -480,6 +484,7 @@
                     android:layout_marginStart="8dp"
                     android:textColor="@color/secondary_text"
                     android:textSize="@dimen/text_size_subHeader"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintBottom_toBottomOf="@+id/textView_appearance_weight_header"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView_appearance_weight_header"
@@ -577,6 +582,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -661,5 +667,16 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
+
+        <Button
+            android:id="@+id/button_add_to_favorites"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Add to Favorites"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView5" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

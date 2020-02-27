@@ -9,43 +9,10 @@ import kotlinx.coroutines.launch
 
 
 class CreateViewModel(private val superHeroRepository: SuperHeroRepository) : ViewModel() {
-    // TODO: Implement the ViewModel
 
-
-    fun createNewSuperHero(id: Int) {
-        val test = SuperHeroEntity(
-            name = "test",
-            image = Image(url = ""),
-            appearance = Appearance(
-                eyeColor = "",
-                gender = "",
-                hairColor = "",
-                height = emptyList(),
-                race = "",
-                weight = emptyList()
-            ),
-            biography = Biography(
-                aliases = emptyList(),
-                alignment = "",
-                alterEgos = "",
-                firstAppearance = "",
-                fullName = "",
-                placeOfBirth = "",
-                publisher = ""
-            ),
-            connections = Connections(groupAffiliation = "", relatives = ""), isFavorite = 1,
-            powerstats = Powerstats(
-                intelligence = "",
-                combat = "",
-                durability = "",
-                power = "",
-                speed = "",
-                strength = ""
-            ),
-            work = Work(base = "", occupation = ""), id = id
-        )
+    fun createNewSuperHero(superHeroEntity: SuperHeroEntity) {
         viewModelScope.launch(Dispatchers.IO) {
-            superHeroRepository.createSuperHero(test)
+            superHeroRepository.createSuperHero(superHeroEntity)
         }
     }
 

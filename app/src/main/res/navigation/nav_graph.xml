@@ -36,5 +36,9 @@
         android:id="@+id/createFragment"
         android:name="com.mlm09kdev.superHeroDB.ui.superhero.create.CreateFragment"
         android:label="create_fragment"
-        tools:layout="@layout/create_fragment" />
+        tools:layout="@layout/create_fragment" >
+        <action
+            android:id="@+id/action_createFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
 </navigation>
