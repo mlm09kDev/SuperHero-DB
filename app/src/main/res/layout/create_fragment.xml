@@ -98,154 +98,262 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/CardView_powerStats_layout"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             app:cardElevation="5sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView_mainInfo_layout">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/primary_light"
-                android:orientation="vertical"
-                android:paddingBottom="5dp">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textView_powerStat_header"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_margin="5dp"
+                    android:background="@color/primary_light"
                     android:text="Power Stats"
                     android:textColor="@color/primary_text"
-                    android:textSize="@dimen/text_size_header"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textSize="@dimen/text_size_subHeader" />
 
-                <TextView
-                    android:id="@+id/textView_powerstat_power_header"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/powerstat_layout1"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Power"
-                    app:layout_constraintEnd_toStartOf="@+id/textView_powerstat_intelligence_header"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_powerStat_header" />
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="1dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
 
-                <EditText
-                    android:id="@+id/editText_powerstat_power_text"
-                    android:layout_width="wrap_content"
+                    <ImageView
+                        android:id="@+id/imageView_powerStat_power"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_weight="9"
+                        android:src="@drawable/ic_power_icon"
+                        tools:src="@mipmap/ic_launcher_round" />
+
+                    <SeekBar
+                        android:id="@+id/seekbar_powerStat_power"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_weight="2"
+                        android:max="100"
+                        tools:progress="54" />
+
+                    <TextView
+                        android:id="@+id/textView_powerstat_power_seekbar_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="15dp"
+                        android:layout_weight="9"
+                        android:gravity="center"
+                        android:textColor="@color/primary_text"
+                        tools:text="54" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/powerstat_layout2"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:textAlignment="center"
-                    android:textSize="@dimen/text_size_subHeader"
-                    app:layout_constraintEnd_toStartOf="@+id/editText_powerstat_intelligence_text"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_powerstat_power_header"
-                    tools:text="100" />
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="1dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
 
-                <TextView
-                    android:id="@+id/textView_powerstat_intelligence_header"
-                    android:layout_width="wrap_content"
+                    <ImageView
+                        android:id="@+id/imageView_powerStat_intelligence"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_weight="9"
+                        android:src="@drawable/ic_intelligence_icon"
+                        tools:src="@mipmap/ic_launcher_round" />
+
+                    <SeekBar
+                        android:id="@+id/seekbar_powerStat_intelligence"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_weight="2"
+                        android:max="100"
+                        tools:progress="54" />
+
+                    <TextView
+                        android:id="@+id/textView_powerstat_intelligence_seekbar_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="15dp"
+                        android:layout_weight="9"
+                        android:gravity="center"
+                        android:textColor="@color/primary_text"
+                        tools:text="54" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/powerstat_layout3"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Intelligence"
-                    app:layout_constraintEnd_toStartOf="@+id/textView_powerstat_combat_header"
-                    app:layout_constraintStart_toEndOf="@+id/textView_powerstat_power_header"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_powerStat_header" />
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="1dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
 
+                    <ImageView
+                        android:id="@+id/imageView_powerStat_combat"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_weight="9"
+                        android:src="@drawable/ic_combat"
+                        tools:src="@mipmap/ic_launcher_round" />
 
-                <EditText
-                    android:id="@+id/editText_powerstat_intelligence_text"
-                    android:layout_width="wrap_content"
+                    <SeekBar
+                        android:id="@+id/seekbar_powerStat_combat"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_weight="2"
+                        android:max="100"
+                        tools:progress="54" />
+
+                    <TextView
+                        android:id="@+id/textView_powerstat_combat_seekbar_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="15dp"
+                        android:layout_weight="9"
+                        android:gravity="center"
+                        android:textColor="@color/primary_text"
+                        tools:text="54" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/powerstat_layout4"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:textAlignment="center"
-                    android:textSize="@dimen/text_size_subHeader"
-                    app:layout_constraintEnd_toStartOf="@+id/editText_powerstat_combat_text"
-                    app:layout_constraintStart_toEndOf="@+id/editText_powerstat_power_text"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_powerstat_intelligence_header"
-                    tools:text="100" />
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="1dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
 
-                <TextView
-                    android:id="@+id/textView_powerstat_combat_header"
-                    android:layout_width="wrap_content"
+                    <ImageView
+                        android:id="@+id/imageView_powerStat_speed"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_weight="9"
+                        android:src="@drawable/ic_speed_icon"
+                        tools:src="@mipmap/ic_launcher_round" />
+
+                    <SeekBar
+                        android:id="@+id/seekbar_powerStat_speed"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_weight="2"
+                        android:max="100"
+                        tools:progress="54" />
+
+                    <TextView
+                        android:id="@+id/textView_powerstat_speed_seekbar_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="15dp"
+                        android:layout_weight="9"
+                        android:gravity="center"
+                        android:textColor="@color/primary_text"
+                        tools:text="54" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/powerstat_layout5"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Combat"
-                    app:layout_constraintEnd_toStartOf="@+id/textView_powerstat_speed_header"
-                    app:layout_constraintStart_toEndOf="@+id/textView_powerstat_intelligence_header"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_powerStat_header" />
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="1dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
 
-                <EditText
-                    android:id="@+id/editText_powerstat_combat_text"
-                    android:layout_width="wrap_content"
+                    <ImageView
+                        android:id="@+id/imageView_powerStat_strength"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_weight="9"
+                        android:src="@drawable/ic_strength_icon"
+                        tools:src="@mipmap/ic_launcher_round" />
+
+                    <SeekBar
+                        android:id="@+id/seekbar_powerStat_strength"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_weight="2"
+                        android:max="100"
+                        tools:progress="54" />
+
+                    <TextView
+                        android:id="@+id/textView_powerstat_strength_seekbar_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="15dp"
+                        android:layout_weight="9"
+                        android:gravity="center"
+                        android:textColor="@color/primary_text"
+                        tools:text="54" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/powerstat_layout6"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
 
-                    android:inputType="number"
-                    android:textAlignment="center"
-                    android:textSize="@dimen/text_size_subHeader"
-                    app:layout_constraintEnd_toStartOf="@+id/editText_powerstat_speed_text"
-                    app:layout_constraintStart_toEndOf="@+id/editText_powerstat_intelligence_text"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_powerstat_combat_header"
-                    tools:text="100" />
+                    <ImageView
+                        android:id="@+id/imageView_powerStat_durability"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_weight="9"
+                        android:src="@drawable/ic_durability_icon"
+                        tools:src="@mipmap/ic_launcher_round" />
 
+                    <SeekBar
+                        android:id="@+id/seekbar_powerstat_durability"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_weight="2"
+                        android:max="100"
+                        tools:progress="54" />
 
-                <TextView
-                    android:id="@+id/textView_powerstat_speed_header"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Speed"
-                    app:layout_constraintEnd_toStartOf="@+id/textView_powerstat_durability_header"
-                    app:layout_constraintStart_toEndOf="@+id/textView_powerstat_combat_header"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_powerStat_header" />
-
-                <EditText
-                    android:id="@+id/editText_powerstat_speed_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:layout_marginEnd="49dp"
-                    android:inputType="number"
-                    android:textAlignment="center"
-                    android:textSize="@dimen/text_size_subHeader"
-                    app:layout_constraintEnd_toStartOf="@+id/editText_powerstat_durability_text"
-                    app:layout_constraintStart_toEndOf="@+id/editText_powerstat_combat_text"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_powerstat_speed_header"
-                    tools:text="100" />
-
-
-                <TextView
-                    android:id="@+id/textView_powerstat_durability_header"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Durability"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView_powerstat_speed_header"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_powerStat_header" />
-
-                <EditText
-                    android:id="@+id/editText_powerstat_durability_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:layout_marginEnd="8dp"
-                    android:inputType="number"
-                    android:textAlignment="center"
-                    android:textSize="@dimen/text_size_subHeader"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/editText_powerstat_speed_text"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_powerstat_durability_header"
-                    tools:text="100" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/textView_powerstat_durability_seekbar_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="15dp"
+                        android:layout_weight="9"
+                        android:gravity="center"
+                        android:textColor="@color/primary_text"
+                        tools:text="54" />
+                </LinearLayout>
+            </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
