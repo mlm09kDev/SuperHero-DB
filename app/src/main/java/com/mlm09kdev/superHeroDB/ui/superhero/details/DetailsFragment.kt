@@ -63,7 +63,7 @@ class DetailsFragment : ScopedFragment(), KodeinAware {
                 return@Observer
 
             group_details_loading.visibility = View.GONE
-            (activity as? AppCompatActivity)?.supportActionBar?.title = it.id.toString()
+            (activity as? AppCompatActivity)?.supportActionBar?.title = it.name
             bindPowerStats(it.powerstats)
             bindBiography(it.biography)
             bindAppearance(it.appearance)
