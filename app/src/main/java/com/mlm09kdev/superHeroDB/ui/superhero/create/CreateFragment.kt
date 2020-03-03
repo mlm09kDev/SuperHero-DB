@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.SeekBar
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -45,6 +46,7 @@ class CreateFragment : Fragment(), KodeinAware {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory).get(CreateViewModel::class.java)
+        (activity as? AppCompatActivity)?.supportActionBar?.title = "Create new Super Hero"
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         val id = prefs.getInt("LastId", 731).plus(1)
         val editor = prefs.edit()
