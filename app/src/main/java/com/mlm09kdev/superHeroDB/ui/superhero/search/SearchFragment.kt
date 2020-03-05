@@ -7,6 +7,7 @@ import android.os.Parcelable
 import android.view.*
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -81,7 +82,7 @@ class SearchFragment : Fragment(), KodeinAware, OnItemClickListener {
         viewModel.searchList.observe(viewLifecycleOwner, Observer {
             if (it == null)
                 return@Observer
-            group_search_loading.visibility = View.GONE
+            group_search_loading.isVisible = false
             initRecyclerView(it.toSearchItem())
             loadState()
             if (listViewState != null)

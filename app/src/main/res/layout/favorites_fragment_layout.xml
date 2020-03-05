@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.superhero.search.SearchFragment">
+    tools:context=".ui.superhero.favorites.FavoritesFragment">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="1.0" />
-
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/group_favorites_loading"

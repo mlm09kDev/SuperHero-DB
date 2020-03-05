@@ -12,6 +12,8 @@ import com.mlm09kdev.superHeroDB.R
 import com.mlm09kdev.superHeroDB.model.database.entity.SuperHeroEntity
 import com.mlm09kdev.superHeroDB.utils.glide.GlideApp
 import kotlinx.android.synthetic.main.favorite_item_superhero_card.view.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class FavoritesAdapter(onSuperHeroClickListener: OnSuperHeroClickListener) :
@@ -134,22 +136,22 @@ class FavoritesAdapter(onSuperHeroClickListener: OnSuperHeroClickListener) :
 
     private val favoritesFilter: Filter = object : Filter() {
         override fun performFiltering(constraint: CharSequence): FilterResults {
-            var filteredList: ArrayList<SuperHeroEntity> = ArrayList()
-            if (constraint.isNullOrEmpty()) {
+            val filteredList: ArrayList<SuperHeroEntity> = ArrayList()
+            if (constraint.isEmpty()) {
                 filteredList.addAll(itemsListFull)
             } else {
-                var filterPattern = constraint.toString().toLowerCase().trim()
+                val filterPattern = constraint.toString().toLowerCase(Locale.ROOT).trim()
                 for (superHeroEntity in itemsListFull) {
-                    if (superHeroEntity.name.toLowerCase().contains(filterPattern) ||
-                        superHeroEntity.biography.publisher.toLowerCase().contains(filterPattern) ||
-                        superHeroEntity.biography.firstAppearance.toLowerCase().contains(
+                    if (superHeroEntity.name.toLowerCase(Locale.ROOT).contains(filterPattern) ||
+                        superHeroEntity.biography.publisher.toLowerCase(Locale.ROOT).contains(filterPattern) ||
+                        superHeroEntity.biography.firstAppearance.toLowerCase(Locale.ROOT).contains(
                             filterPattern
                         )
                     )
                         filteredList.add(superHeroEntity)
                 }
             }
-            var filterResults = FilterResults()
+            val filterResults = FilterResults()
             filterResults.values = filteredList
             return filterResults
         }

@@ -9,6 +9,7 @@ import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -92,7 +93,7 @@ class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSupe
         superHero.observe(viewLifecycleOwner, Observer {
             if (it == null)
                 return@Observer
-            group_favorites_loading.visibility = View.GONE
+            group_favorites_loading.isVisible = false
             initRecyclerView()
             addDataToRecyclerView(it)
             if (listState != null)
@@ -164,10 +165,10 @@ class FavoritesFragment : ScopedFragment(), KodeinAware, FavoritesAdapter.OnSupe
         })
     }
 
-    override fun onSwiped(viewHolder: RecyclerView.ViewHolder?, direction: Int, position: Int) {
+    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int, position: Int) {
         if (viewHolder is FavoritesAdapter.SuperHeroViewHolder) {
             // get the removed item name to display it in snack bar
-            val name: String = favoritesAdapter.itemsList[viewHolder!!.adapterPosition].name
+            val name: String = favoritesAdapter.itemsList[viewHolder.adapterPosition].name
             // backup of removed item for undo purpose
             val deletedSuperHeroEntity: SuperHeroEntity =
                 favoritesAdapter.itemsList[viewHolder.adapterPosition]

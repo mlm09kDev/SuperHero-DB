@@ -218,6 +218,4 @@ class CreateFragment : Fragment(), KodeinAware {
             ), id = id
         )
     }
-
-
 }

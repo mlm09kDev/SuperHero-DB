@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.mlm09kdev.superHeroDB.R
@@ -62,7 +63,7 @@ class DetailsFragment : ScopedFragment(), KodeinAware {
             if (it == null)
                 return@Observer
 
-            group_details_loading.visibility = View.GONE
+            group_details_loading.isVisible = false
             (activity as? AppCompatActivity)?.supportActionBar?.title = it.name
             bindPowerStats(it.powerstats)
             bindBiography(it.biography)

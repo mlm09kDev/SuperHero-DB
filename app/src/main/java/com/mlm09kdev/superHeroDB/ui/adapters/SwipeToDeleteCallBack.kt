@@ -72,7 +72,7 @@ open class SwipeToDeleteCallback(
 
     interface RecyclerItemTouchHelperListener {
         fun onSwiped(
-            viewHolder: RecyclerView.ViewHolder?,
+            viewHolder: RecyclerView.ViewHolder,
             direction: Int,
             position: Int
         )

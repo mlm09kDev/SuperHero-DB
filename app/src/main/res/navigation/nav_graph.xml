@@ -21,7 +21,10 @@
         tools:layout="@layout/favorites_fragment_layout" >
         <action
             android:id="@+id/action_favoriteListFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -30,7 +33,11 @@
         tools:layout="@layout/favorites_fragment_layout">
         <action
             android:id="@+id/action_searchFragment_to_detailsFragment"
-            app:destination="@+id/detailsFragment" />
+            app:destination="@+id/detailsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/createFragment"
@@ -39,6 +46,10 @@
         tools:layout="@layout/create_fragment" >
         <action
             android:id="@+id/action_createFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
 </navigation>
