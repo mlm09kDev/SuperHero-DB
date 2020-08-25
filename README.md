@@ -3,7 +3,7 @@
 <p align="center">
 Super Hero Database is a sample Android project using the <a href="https://www.superheroapi.com/">Super Hero</a> API based on MVVM architecture. It showcases the app development with well-designed architecture and up-to-date Android tech stacks.
 
-##![MovieHunt](./art/.png)
+![SuperHero DB](./art/.png)
 
 </p>
 
