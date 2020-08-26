@@ -15,7 +15,7 @@ Super Hero Database is a sample Android project using the <a href="https://www.s
 * Dependency injection
 * Testing (Upcoming)
 
-<img src="./pictures/SuperHeroDB.gif" align="right" width="32%"/>
+<img src="./pictures/SuperHeroDB.gif" align="right" width="25%" />
 
 ## Tech Stacks
 * [Retrofit](http://square.github.io/retrofit/) + [OkHttp](http://square.github.io/okhttp/) - RESTful API and networking client.
