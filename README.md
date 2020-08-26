@@ -32,7 +32,7 @@ Super Hero Database is a sample Android project using the <a href="https://www.s
 
 ## Architectures
 
-![MVVM](./art/architecture.png)
+![MVVM](./art/Architecture.png)
 
 Followed Google recommended [Guide to app architecture](https://developer.android.com/jetpack/guide) to structure the architecture based on MVVM and reactive UI using LiveData observables.
 
