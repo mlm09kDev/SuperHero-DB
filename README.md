@@ -3,7 +3,7 @@
 <p align="center">
 Super Hero Database is a sample Android project using the <a href="https://www.superheroapi.com/">Super Hero</a> API based on MVVM architecture. It showcases the app development with well-designed architecture and up-to-date Android tech stacks.
 
-![SuperHero DB](./art/.png)
+![SuperHero DB](./pictures/SuperheroDBApp.png)
 
 </p>
 
@@ -15,7 +15,7 @@ Super Hero Database is a sample Android project using the <a href="https://www.s
 * Dependency injection
 * Testing (Upcoming)
 
-<img src="./art/.gif" align="right" width="32%"/>
+<img src="./pictures/SuperHeroDB.gif" align="right" width="32%"/>
 
 ## Tech Stacks
 * [Retrofit](http://square.github.io/retrofit/) + [OkHttp](http://square.github.io/okhttp/) - RESTful API and networking client.
@@ -32,11 +32,11 @@ Super Hero Database is a sample Android project using the <a href="https://www.s
 
 ## Architectures
 
-![MVVM](./art/.png)
+![MVVM](./art/architecture.png)
 
 Followed Google recommended [Guide to app architecture](https://developer.android.com/jetpack/guide) to structure the architecture based on MVVM and reactive UI using LiveData observables.
 
-* **View**: Activity/Fragment with UI-specific logics only.
+* **View**: Activity/Fragment with UI-specific logic only.
 * **ViewModel**: It keeps the logic away from View layer, provides data streams for UI and handle user interactions.
 * **Model**: Repository pattern, data layers that provide interface to manipulate data from both the local and remote data sources. The local data sources will serve as [single source of truth](https://en.wikipedia.org/wiki/Single_source_of_truth).
 
@@ -53,7 +53,7 @@ com.mlm09kdev.superHeroDB # Root Package
 │   └── repo              # Repositories for single source of data
 │
 ├── ui                    # Fragment / View layer
-│   ├── adapters          # recyclerView Adpeter
+│   ├── adapters          # recyclerView Adepter
 │   ├── superhero        
 |   │   ├── create        # create screen Fragment, ViewModel, and viewModel Factory
 |   │   ├── details       # details screen Fragment, ViewModel, and viewModel Factory
@@ -70,7 +70,7 @@ com.mlm09kdev.superHeroDB # Root Package
 ## API Key 🔑
 You will need to provide developer key to fetch the data from <a href="https://www.superheroapi.com/">Super Hero</a> API.
 * Generate a new key from [here](https://www.superheroapi.com/). Copy the key and go back to Android project.
-* Define a veriable `api_token` in gradle.properties with the double quotes, it looks like
+* Define a variable `api_token` in gradle.properties with the double quotes, it looks like
 
 ```kotlin
 api_token="5**************2"
