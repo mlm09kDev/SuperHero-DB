@@ -30,7 +30,7 @@ Super Hero Database is a sample Android project using the <a href="https://www.s
 * [Glide](https://github.com/bumptech/glide) - Image loading.
 * [Coroutines](https://developer.android.com/kotlin/coroutines) - Light-weight threads for background operations. (Upcoming)
 
-## Architectures
+## Architecture
 
 ![MVVM](./pictures/Architecture.png)
 
