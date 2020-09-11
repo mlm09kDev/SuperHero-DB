@@ -28,7 +28,7 @@ Super Hero Database is a sample Android project using the <a href="https://www.s
     * [Navigation component](https://developer.android.com/guide/navigation) - Fragment routing handler.
 * [Groupie](https://github.com/lisawray/groupie) - Simplified way to build complex layout in RecyclerView.
 * [Glide](https://github.com/bumptech/glide) - Image loading.
-* [Coroutines](https://developer.android.com/kotlin/coroutines) - Light-weight threads for background operations. (Upcoming)
+* [Coroutines](https://developer.android.com/kotlin/coroutines) - Light-weight threads for background operations.
 
 ## Architecture
 
